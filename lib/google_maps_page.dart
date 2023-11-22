@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
 
-
 class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -24,27 +23,29 @@ class _MapScreenState extends State<MapScreen> {
     return await rootBundle.loadString('assets/json_data/peak_location.json');
   }
 
-Future<void> loadMarkers() async {
-  try {
-    String jsonString = await _loadJsonData();
-    Map<String, dynamic> data = json.decode(jsonString);
-    List<dynamic> peaks = data['peaks'];
+  Future<void> loadMarkers() async {
+    try {
+      String jsonString = await _loadJsonData();
+      Map<String, dynamic> data = json.decode(jsonString);
+      List<dynamic> peaks = data['peaks'];
 
-    List<Marker> newMarkers = peaks.map((peak) {
-      return Marker(
-        markerId: MarkerId(peak['name']),
-        position: LatLng(peak['coordinates']['latitude'], peak['coordinates']['longitude']),
-        infoWindow: InfoWindow(title: peak['name']),
-      );
-    }).toList();
+      List<Marker> newMarkers = peaks.map((peak) {
+        return Marker(
+          markerId: MarkerId(peak['name']),
+          position: LatLng(peak['coordinates']['latitude'],
+              peak['coordinates']['longitude']),
+          infoWindow:
+              InfoWindow(title: peak['name'], snippet: '${peak['elevation']} feet'),
+        );
+      }).toList();
 
-    setState(() {
-      markers = newMarkers;
-    });
-  } catch (e) {
-    print('Error loading JSON data: $e');
+      setState(() {
+        markers = newMarkers;
+      });
+    } catch (e) {
+      print('Error loading JSON data: $e');
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
