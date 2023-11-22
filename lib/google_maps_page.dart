@@ -53,7 +53,7 @@ class GoogleMapsPageState extends State<GoogleMapsPage> {
 
   Set<Marker> _createMarkersFromJSON() {
     // Replace 'your_file_path.json' with the actual path to your JSON file
-    String jsonFilePath = 'your_file_path.json';
+    String jsonFilePath = 'assets/json_data/peak_location.json';
 
     // Read JSON file and convert to a list of Map<String, dynamic> objects
     Set<Map<String, dynamic>> peaks = JSONReader.readJsonFile(jsonFilePath);
