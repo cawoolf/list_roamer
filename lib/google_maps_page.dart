@@ -14,6 +14,7 @@ class GoogleMapsPageState extends State<GoogleMapsPage> {
 
   final LatLng _center = const LatLng(37.7749, -122.4194); // San Francisco coordinates
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,38 +29,43 @@ class GoogleMapsPageState extends State<GoogleMapsPage> {
           target: _center,
           zoom: 11.0,
         ),
-        markers: _createMarkersFromJSON(),
+        markers: _createMarkers(),
       ),
     );
   }
 
-  // Set<Marker> _createMarkers() {
-  //   // Replace this with your custom list of locations
-  //   return {
-  //     Marker(
-  //       markerId: MarkerId('marker1'),
-  //       position: LatLng(37.7749, -122.4194),
-  //       infoWindow: InfoWindow(title: 'Burger Restaurant 1',
-  //           snippet: 'Mandy gives good head here'),
-  //     ),
-  //     Marker(
-  //       markerId: MarkerId('marker2'),
-  //       position: LatLng(37.7849, -122.4294),
-  //       infoWindow: InfoWindow(title: 'Burger Restaurant 2'),
-  //     ),
-  //     // Add more markers as needed
-  //   };
-  // }
 
-  Set<Marker> _createMarkersFromJSON() {
+  Set<Marker> _createMarkers() {
+    // Replace this with your custom list of locations
+
+    return {
+      Marker(
+        markerId: MarkerId('marker1'),
+        position: LatLng(37.7749, -122.4194),
+        infoWindow: InfoWindow(title: 'Burger Restaurant 1'),
+      ),
+      Marker(
+        markerId: MarkerId('marker2'),
+        position: LatLng(37.7849, -122.4294),
+        infoWindow: InfoWindow(title: 'Burger Restaurant 2'),
+      ),
+      // Add more markers as needed
+    };
+
+  }
+
+    Set<Marker> _createMarkersFromJSON() {
     // Replace 'your_file_path.json' with the actual path to your JSON file
-    String jsonFilePath = 'assets/json_data/peak_location.json';
+    // String jsonFilePath = 'assets/json_data/peak_location.json';
 
     // Read JSON file and convert to a list of Map<String, dynamic> objects
-    Set<Map<String, dynamic>> peaks = JSONReader.readJsonFile(jsonFilePath);
+    Set<Map<String, dynamic>> peaks = JSONReader.readJsonFile();
 
     // Create Marker objects using PeakMarker.createMarker function
-    Set<Marker> markers = peaks.map((peakData) => PeakMarker.createMarker(peakData)).toSet();
+
+    late Set<Marker> markers ={};
+
+    markers.add(PeakMarker.createMarker(peaks.first));
 
     // Now 'markers' is a list of Marker objects that you can use in your Google Maps implementation
     return markers;
