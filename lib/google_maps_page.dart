@@ -1,73 +1,146 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:the_spotz/helpers/json_reader.dart';
 
 import 'models/peak_marker.dart';
 
-class GoogleMapsPage extends StatefulWidget {
+class MapScreen extends StatefulWidget {
   @override
-  State<GoogleMapsPage> createState() => GoogleMapsPageState();
+  _MapScreenState createState() => _MapScreenState();
 }
 
-class GoogleMapsPageState extends State<GoogleMapsPage> {
+class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
+  List<Marker> markers = [];
 
-  final LatLng _center = const LatLng(37.7749, -122.4194); // San Francisco coordinates
+  @override
+  void initState() {
+    super.initState();
+    loadMarkers();
+  }
 
+  void loadMarkers() async {
+    // Load your JSON data (replace this with your actual file reading logic)
+    String jsonString = '''
+     {
+  "peaks": [
+    {
+      "name": "Mount Elbert",
+      "elevation": 14440,
+      "coordinates": {
+        "latitude": 39.1178,
+        "longitude": -106.4454
+      }
+    },
+    {
+      "name": "Mount Massive",
+      "elevation": 14421,
+      "coordinates": {
+        "latitude": 39.1875,
+        "longitude": -106.4753
+      }
+    },
+    {
+      "name": "Mount Harvard",
+      "elevation": 14420,
+      "coordinates": {
+        "latitude": 38.9244,
+        "longitude": -106.3208
+      }
+    },
+    {
+      "name": "Blanca Peak",
+      "elevation": 14351,
+      "coordinates": {
+        "latitude": 37.5775,
+        "longitude": -105.4856
+      }
+    },
+    {
+      "name": "La Plata Peak",
+      "elevation": 14336,
+      "coordinates": {
+        "latitude": 39.0294,
+        "longitude": -106.4727
+      }
+    },
+    {
+      "name": "Uncompahgre Peak",
+      "elevation": 14309,
+      "coordinates": {
+        "latitude": 38.0717,
+        "longitude": -107.4629
+      }
+    },
+    {
+      "name": "Crestone Peak",
+      "elevation": 14294,
+      "coordinates": {
+        "latitude": 37.9665,
+        "longitude": -105.5858
+      }
+    },
+    {
+      "name": "Mount Lincoln",
+      "elevation": 14286,
+      "coordinates": {
+        "latitude": 39.3514,
+        "longitude": -106.1111
+      }
+    },
+    {
+      "name": "Grays Peak",
+      "elevation": 14270,
+      "coordinates": {
+        "latitude": 39.6339,
+        "longitude": -105.8174
+      }
+    },
+    {
+      "name": "Mount Antero",
+      "elevation": 14269,
+      "coordinates": {
+        "latitude": 38.6748,
+        "longitude": -106.2467
+      }
+    }
+  ]
+}
+    ''';
+
+    // Parse JSON
+    Map<String, dynamic> data = json.decode(jsonString);
+    List<dynamic> peaks = data['peaks'];
+    print(peaks);
+
+    // Create markers
+    List<Marker> newMarkers = peaks.map((peak) {
+      return Marker(
+        markerId: MarkerId(peak['name']),
+        position: LatLng(peak['coordinates']['latitude'], peak['coordinates']['longitude']),
+        infoWindow: InfoWindow(title: peak['name']),
+      );
+    }).toList();
+
+    // Update the markers state
+    setState(() {
+      markers = newMarkers;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Custom Maps App'),
+    return GoogleMap(
+      onMapCreated: (GoogleMapController controller) {
+        mapController = controller;
+      },
+      initialCameraPosition: CameraPosition(
+        target: LatLng(39.1178, -106.4454), // Initial camera position
+        zoom: 6.0,
       ),
-      body: GoogleMap(
-        onMapCreated: (GoogleMapController controller) {
-          mapController = controller;
-        },
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
-        ),
-        markers: _createMarkers(),
-      ),
+      markers: Set<Marker>.of(markers),
     );
-  }
-
-
-  Set<Marker> _createMarkers() {
-    // Replace this with your custom list of locations
-
-    return {
-      Marker(
-        markerId: MarkerId('marker1'),
-        position: LatLng(37.7749, -122.4194),
-        infoWindow: InfoWindow(title: 'Burger Restaurant 1'),
-      ),
-      Marker(
-        markerId: MarkerId('marker2'),
-        position: LatLng(37.7849, -122.4294),
-        infoWindow: InfoWindow(title: 'Burger Restaurant 2'),
-      ),
-      // Add more markers as needed
-    };
-
-  }
-
-    Set<Marker> _createMarkersFromJSON() {
-    // Replace 'your_file_path.json' with the actual path to your JSON file
-    // String jsonFilePath = 'assets/json_data/peak_location.json';
-
-    // Read JSON file and convert to a list of Map<String, dynamic> objects
-    Set<Map<String, dynamic>> peaks = JSONReader.readJsonFile();
-
-    // Create Marker objects using PeakMarker.createMarker function
-
-    late Set<Marker> markers ={};
-
-    markers.add(PeakMarker.createMarker(peaks.first));
-
-    // Now 'markers' is a list of Marker objects that you can use in your Google Maps implementation
-    return markers;
   }
 }
