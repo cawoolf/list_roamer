@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class PeakMarker {
+class PeakMarkerHelper {
   static Marker createMarker(Map<String, dynamic> peakData) {
     String name = peakData['name'];
     double elevation = peakData['elevation'].toDouble();
@@ -15,5 +15,19 @@ class PeakMarker {
         snippet: 'Elevation: $elevation meters',
       ),
     );
+  }
+
+  static List<Marker> getPeakMarkers({required List<dynamic> peaks}) {
+    List<Marker> newMarkers = peaks.map((peak) {
+      return Marker(
+        markerId: MarkerId(peak['name']),
+        position: LatLng(peak['coordinates']['latitude'],
+            peak['coordinates']['longitude']),
+        infoWindow:
+        InfoWindow(title: peak['name'], snippet: '${peak['elevation']} feet'),
+      );
+    }).toList();
+
+    return newMarkers;
   }
 }
