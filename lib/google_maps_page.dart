@@ -35,7 +35,7 @@ class _MapScreenState extends State<MapScreen> {
   Future<void> loadMarkers() async {
     try {
 
-      List<dynamic> peaks = JSONHelper.loadJsonData() as List;
+      List<dynamic> peaks = await JSONHelper.loadJsonData();
 
       List<Marker> newMarkers = peaks.map((peak) {
         return Marker(
