@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:the_spotz/helpers/json_reader.dart';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -23,11 +24,18 @@ class _MapScreenState extends State<MapScreen> {
     return await rootBundle.loadString('assets/json_data/peak_location.json');
   }
 
+
+  Future<List<dynamic>> _loadJsonData2() async {
+    String jsonString = await rootBundle.loadString('assets/json_data/peak_location.json');
+    Map<String, dynamic> data = json.decode(jsonString);
+    List<dynamic> peaks = data['peaks'];
+    return peaks;
+  }
+
   Future<void> loadMarkers() async {
     try {
-      String jsonString = await _loadJsonData();
-      Map<String, dynamic> data = json.decode(jsonString);
-      List<dynamic> peaks = data['peaks'];
+
+      List<dynamic> peaks = JSONHelper.loadJsonData() as List;
 
       List<Marker> newMarkers = peaks.map((peak) {
         return Marker(
@@ -51,7 +59,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('The Spotz - Colorado Peaks'),
+        title: const Text('ListRoamer - Colorado Peaks'),
       ),
       body: GoogleMap(
         onMapCreated: (GoogleMapController controller) {
