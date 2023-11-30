@@ -1,0 +1,105 @@
+~~~11/28/23~~~
+
+Following the outline provided by ChatGPT
+
+1. Define the Vision and Goals:
+Before diving into user stories, clearly define the overall vision and goals of your application. Understand the problem you're solving and the value you want to deliver.
+
+The goal is to create an application that allows you to easily share lists of locations that you enjoy,
+and that you want to share with others. You can also use this to plan trips. Display job sites. Other applications.
+
+3. Use the "As a, I want, So that" Template:
+
+***Offline
+As a User, I want to select a list from my archive, so that I can view that list's location on the map.
+
+As a User, I want to be able to create new lists, so that I can create and add places to them.
+
+As a User, I want to be able to CRUD new places to my lists, so that I can have a repository of my all favorite places.
+
+As a User, I want to be able to add details to the places in my lists, so that I can have notes and see more information.
+
+
+***Online
+As a User, I want to be able to share my lists with my friends, so that I can help them find places I think they will enjoy.
+
+As a User, I want to be able to set my lists to public or private, so that I can control what gets shared.
+
+As a User, I want to be able to create an account, so that I can manage my data.
+
+As a User, I want to have an account, so that other people can add me as friends.
+
+As a User, I want to be able to view lists that have been shared with me, so that I can view them on the map, and make plans to visit them.
+
+As a User, I want to be able to save lists that have been shared with me, so that I can access and browse them for later plans.
+
+As a User, I want to be able to browser all of my friends public lists
+
+
+4. INVEST Criteria:
+Understand and apply the INVEST criteria to ensure that your user stories are well-defined, valuable, and feasible.
+
+5. Persona-based Stories:
+Start creating user stories based on the identified personas. Use the "As a, I want, So that" template to articulate user needs and benefits.
+
+6. Acceptance Criteria:
+Develop clear acceptance criteria for each user story. This will help you and your team understand when a story is considered complete.
+
+7. Non-functional Requirements:
+Consider non-functional requirements, such as performance, security, and scalability, and turn them into user stories.
+
+8. Keep it Simple:
+Focus on simplicity in language and clarity when writing user stories. Aim for a common understanding among all team members.
+
+9. Conversations over Documentation:
+Encourage discussions and conversations around user stories. Use them as a tool for communication rather than relying solely on documentation.
+
+10. Prototype or Mockups:
+Create simple prototypes or mockups to visualize the user interface and the expected user experience. This can be particularly helpful for communicating design ideas.
+
+11. Story Slicing:
+If some features seem too large or complex, consider breaking them down into smaller, manageable slices that can be delivered incrementally.
+
+12. INVEST in Refinement:
+Regularly refine and update your user stories as your understanding of the project evolves. This can happen during backlog grooming sessions or sprint planning.
+
+13. Focus on Value:
+Prioritize user stories based on the value they deliver to end users. Start with the features that provide the most significant impact.
+
+14. Role-based Stories:
+Consider the roles of different users and write stories specific to each role. This can help tailor features to the needs of various user types.
+
+
+
+**User Story Notes**
+1. Use the "As a, I want, So that" Template:
+As a [user type],
+I want [an action],
+So that [benefit/value].
+This template helps to clearly define the user, their goal, and the value they expect.
+
+2. INVEST Criteria:
+Independent: Stories should be independent of each other.
+Negotiable: Details are negotiable between the development team and stakeholders.
+Valuable: Each story should deliver value to the end user.
+Estimable: The team should be able to estimate the time and effort required.
+Small: Stories should be small enough to be completed in a single sprint.
+Testable: There should be clear criteria for the story to be considered done.
+
+3. Acceptance Criteria:
+Define clear acceptance criteria that outline the conditions that must be met for the story to be considered complete.
+Use scenarios to describe different situations the user may encounter.
+
+WHEN email is updated
+AND password is updated
+AND submit is called
+THEN modelStream emits the correct events
+
+  GIVEN the User is on the GoogleMaps page
+  WHEN the Archive icon is clicked
+  THEN the User navigates to the Archive page
+
+GIVEN
+WHEN
+AND
+THEN

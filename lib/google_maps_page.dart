@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
@@ -26,17 +27,19 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> loadMarkers() async {
     try {
-
-      List<dynamic> peaks = await JSONHelper.loadJsonData();
+      String peaksJsonAssetRoute = 'assets/json_data/peak_location.json';
+      List<dynamic> peaks = await JSONHelper.loadJsonData(assetRoute: peaksJsonAssetRoute);
       List<Marker> peakMarkers = PeakMarkerHelper.getPeakMarkers(peaks: peaks);
 
-      setState(() async {
+      setState(() {
 
         markers = peakMarkers;
       });
 
     } catch (e) {
-      print('Error loading JSON data: $e');
+      if (kDebugMode) {
+        print('Error loading JSON data: $e');
+      }
     }
   }
 
