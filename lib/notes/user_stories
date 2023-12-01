@@ -11,6 +11,8 @@ and that you want to share with others. You can also use this to plan trips. Dis
 3. Use the "As a, I want, So that" Template:
 
 ***Offline
+As a User, I want to be able to navigate easily through the app, so that I can simply access and view my lists.
+
 As a User, I want to select a list from my archive, so that I can view that list's location on the map.
 
 As a User, I want to be able to create new lists, so that I can create and add places to them.
