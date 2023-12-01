@@ -3,18 +3,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
-import 'package:the_spotz/helpers/peak_marker_helper.dart';
 
-import 'helpers/json_helper.dart';
+import '../services/helpers/json_helper.dart';
+import '../services/helpers/peak_marker_helper.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+class MapPage extends StatefulWidget {
+  const MapPage({super.key});
 
   @override
-  _MapScreenState createState() => _MapScreenState();
+  MapPageState createState() => MapPageState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class MapPageState extends State<MapPage> {
   late GoogleMapController mapController;
   List<Marker> markers = [];
 
