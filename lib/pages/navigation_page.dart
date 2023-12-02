@@ -3,6 +3,7 @@ import 'package:the_spotz/pages/account_page.dart';
 import 'package:the_spotz/pages/common_widgets/cupertino_home_scaffold.dart';
 import 'package:the_spotz/pages/maps_page.dart';
 import '../services/helpers/tab_item.dart';
+import 'home_page.dart';
 import 'list_view_page.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -18,8 +19,8 @@ class _NavigationPageState extends State<NavigationPage> {
 
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
     TabItem.map: GlobalKey<NavigatorState>(),
-    TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.list: GlobalKey<NavigatorState>(),
+    TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.account: GlobalKey<NavigatorState>(),
   };
 
@@ -27,8 +28,8 @@ class _NavigationPageState extends State<NavigationPage> {
     return {
       //Takes a context argument, but passing _ since we don't need it.
       TabItem.map: (_) => const MapPage(),
-      TabItem.home: (_) => const NavigationPage(),
       TabItem.list: (_) => const ListViewPage(),
+      TabItem.home: (_) => const HomePage(),
       TabItem.account: (_) => const AccountPage(),
     };
   }
