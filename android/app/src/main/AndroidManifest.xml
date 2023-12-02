@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="the_spotz"
+        android:label="list_roamer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -31,6 +31,6 @@
             android:value="2" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC5FIYYc9eoNFQBu4s_FbI17N2tsnm4EZY" />
+            android:value="GOOGLE_MAPS_API_KEY" />
     </application>
 </manifest>

@@ -29,15 +29,27 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>the_spotz</title>
+  <title>ListRoamer</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
-  <!-- This script adds the flutter initialization JS code -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5FIYYc9eoNFQBu4s_FbI17N2tsnm4EZY&libraries=places"></script>
+
+<!--    <script>-->
+<!--  const googleMapsApiKey = "${dotenv.env['GOOGLE_MAPS_API_KEY']}"; // Load API key from dotenv-->
+<!--  const mapsScript = document.createElement('script');-->
+<!--  mapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=places`;-->
+<!--  document.head.appendChild(mapsScript);-->
+<!--</script>-->
+
+    <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
 </head>
 <body>
   <script>

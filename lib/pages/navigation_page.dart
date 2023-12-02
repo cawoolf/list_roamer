@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:the_spotz/pages/account_page.dart';
-import 'package:the_spotz/pages/common_widgets/cupertino_home_scaffold.dart';
-import 'package:the_spotz/pages/maps_page.dart';
+import 'package:list_roamer/pages/maps_page.dart';
 import '../services/helpers/tab_item.dart';
+import 'account_page.dart';
+import 'common_widgets/cupertino_home_scaffold.dart';
 import 'home_page.dart';
 import 'list_view_page.dart';
 

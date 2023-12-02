@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:the_spotz/pages/maps_page.dart';
-import 'package:the_spotz/pages/navigation_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:list_roamer/pages/navigation_page.dart';
 
-
-void main() {
+Future<void> main() async {
+  await dotenv.load();
+  print(dotenv.env['GOOGLE_MAPS_API_KEY']);
   runApp(const MyApp());
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_spotz/pages/list_view_page.dart';
+import 'package:list_roamer/pages/list_view_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
