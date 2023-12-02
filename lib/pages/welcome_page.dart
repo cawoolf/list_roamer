@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:list_roamer/pages/navigation_page.dart';
 
 import 'home_page.dart';
 
@@ -20,7 +21,7 @@ class WelcomePageState extends State<WelcomePage> {
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const NavigationPage()),
       );
     });
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:list_roamer/pages/navigation_page.dart';
+import 'package:list_roamer/pages/welcome_page.dart';
 
 Future<void> main() async {
   await dotenv.load();
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: NavigationPage(),
+      home: WelcomePage(),
     );
   }
 }
