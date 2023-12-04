@@ -1,11 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:list_roamer/pages/navigation_page.dart';
 import 'package:list_roamer/pages/welcome_page.dart';
+import 'package:list_roamer/services/firebase_options.dart';
 
 Future<void> main() async {
-  await dotenv.load();
-  print(dotenv.env['GOOGLE_MAPS_API_KEY']);
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
