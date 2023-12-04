@@ -62,5 +62,5 @@ class DefaultFirebaseOptions {
       appId: "1:572081645163:web:10bd96e3c5de6f9d2e332e",
       measurementId: "G-DLKXXE0QMV"
   );
-  
+
 }
