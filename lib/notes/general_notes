@@ -1,6 +1,11 @@
 Feature:  json markers - 5- Json file loading completed
 
 
+***12/3/23**
+
+I think I might have pushed a redundant install of Firebase to git?
+I ran npm install firebase, not sure if that was needed if I'm just depending on it from pubspec.yaml
+
 ***11/21/23***
 Start with simple stuff. How do you work with JSON in Flutter?
 How do you load it? Async or not?
