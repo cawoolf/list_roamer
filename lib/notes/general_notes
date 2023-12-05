@@ -1,10 +1,15 @@
 Feature:  json markers - 5- Json file loading completed
 
 
+<<<<<<< HEAD
 ***12/3/23**
 
 I think I might have pushed a redundant install of Firebase to git?
 I ran npm install firebase, not sure if that was needed if I'm just depending on it from pubspec.yaml
+=======
+***12/4/23***
+Added database stuff. Need to add Provider and try it out. Create widget tree
+>>>>>>> working
 
 ***11/21/23***
 Start with simple stuff. How do you work with JSON in Flutter?
