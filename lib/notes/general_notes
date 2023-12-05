@@ -1,6 +1,9 @@
 Feature:  json markers - 5- Json file loading completed
 
 
+***12/4/23***
+Added database stuff. Need to add Provider and try it out. Create widget tree
+
 ***11/21/23***
 Start with simple stuff. How do you work with JSON in Flutter?
 How do you load it? Async or not?
