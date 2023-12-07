@@ -7,7 +7,7 @@ import 'api_path.dart';
 import 'firestore_service.dart';
 
 abstract class Database {
-  Stream<Marker> getTestMarker();
+  Stream<UserMarker> getTestMarker();
 }
 
 class FirestoreDatabase implements Database {
@@ -16,12 +16,15 @@ class FirestoreDatabase implements Database {
   final String uid;
   final _service = FirestoreService.instance; //Singleton for the service class.
 
-  String testLocationId = 'Qq2al9a0o9mTwX2FPxtm';
+  String testLocationId = 'test_location_1';
+  String testListId = 'testList_1';
 
   @override
-  Stream<Marker> getTestMarker() => _service.documentStream(
-      path: APIPath.getTestMarker(locationId: testLocationId),
-      builder: (data, documentId) => UserMarker.createMarker(data!)
+  Stream<UserMarker> getTestMarker() => _service.documentStream(
+      path: APIPath.location(locationId: testLocationId, listId: testListId),
+      builder: (data, documentId) => UserMarker.createMarker(data!) as UserMarker,
   );
+
+  // /users/testUser/lists/testList_1/location_markers/test_location_1
 
 }
