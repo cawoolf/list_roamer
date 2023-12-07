@@ -7,7 +7,7 @@ import 'api_path.dart';
 import 'firestore_service.dart';
 
 abstract class Database {
-  Stream<Marker> getTestMarker({required String listId});
+  Stream<Marker> getTestMarker();
 }
 
 class FirestoreDatabase implements Database {
@@ -19,7 +19,7 @@ class FirestoreDatabase implements Database {
   String testLocationId = 'Qq2al9a0o9mTwX2FPxtm';
 
   @override
-  Stream<Marker> getTestMarker({required String listId}) => _service.documentStream(
+  Stream<Marker> getTestMarker() => _service.documentStream(
       path: APIPath.getTestMarker(locationId: testLocationId),
       builder: (data, documentId) => UserMarker.createMarker(data!)
   );

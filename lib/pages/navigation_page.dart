@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:list_roamer/pages/maps_page.dart';
+import '../services/database.dart';
 import '../services/helpers/tab_item.dart';
 import 'account_page.dart';
 import 'common_widgets/cupertino_home_scaffold.dart';
 import 'home_page.dart';
 import 'list_view_page.dart';
+import 'package:provider/provider.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({Key? key}) : super(key: key);
@@ -47,6 +49,10 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final database = Provider.of<Database>(context, listen: false);
+
+
     return WillPopScope(
       onWillPop: () async{
         // Used for handling back navigation on Android.
