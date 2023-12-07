@@ -13,8 +13,8 @@ class ListViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
-    Marker testMarker = database.getTestMarker() as Marker;
-    print(testMarker.toString());
+    var testMarker = database.getTestMarker();
+    print(testMarker.first);
     return Scaffold(
       appBar: AppBar(
         title: Text('ListView Page'),
