@@ -6,7 +6,7 @@ import 'markers_view_page.dart';
 
 
 class ListViewPage extends StatefulWidget {
-  const ListViewPage({super.key});
+  const ListViewPage({Key? key});
 
   @override
   State<StatefulWidget> createState() => ListViewPageState();
@@ -58,8 +58,11 @@ class ListViewPageState extends State<ListViewPage> {
                     ),
                   );
                 },
-                child: Center(
-                  child: Text(document['title']),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0), // Adjust the value as needed
+                  child: Center(
+                    child: Text(document['title']),
+                  ),
                 ),
               );
             }).toList(),
@@ -69,3 +72,4 @@ class ListViewPageState extends State<ListViewPage> {
     );
   }
 }
+

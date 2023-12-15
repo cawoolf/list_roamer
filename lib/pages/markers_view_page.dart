@@ -9,10 +9,11 @@ class MarkersViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Implement the UI to display details of the selected list.
-    String documentId = 'testList_1';
+    String documentId = document.id;
     String locationCollectionPath =
         '/users/testUser/lists/$documentId/location_markers';
 
+    print(document.id);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Marker Read Test"),
