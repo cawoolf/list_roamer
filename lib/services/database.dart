@@ -1,14 +1,14 @@
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:list_roamer/model/UserMarker.dart';
 
-import '../model/UserList.dart';
+import '../model/user_list.dart';
+import '../model/user_marker.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
 
 abstract class Database {
   Stream<UserMarker> getTestMarker();
-  Stream<UserList> listStream();
+  Stream<List<UserList>> userListsStream();
   Stream<UserMarker> markerStream();
 }
 
@@ -28,10 +28,10 @@ class FirestoreDatabase implements Database {
   );
 
   @override
-  Stream<UserList> listStream() {
-    return _service.documentStream(
+  Stream<List<UserList>> userListsStream() {
+    return _service.collectionStream(
         path: APIPath.userLists(userId: 'testUser'),
-        builder: (data, documentId) => UserList.fromMap(data!));
+        builder: (data, documentId) => UserList.fromMap(data));
   }
 
   @override

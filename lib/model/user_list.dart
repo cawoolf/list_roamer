@@ -1,4 +1,6 @@
 
+import 'package:flutter/src/widgets/gesture_detector.dart';
+
 class UserList {
   UserList(this.title);
   final String title;
@@ -7,5 +9,7 @@ class UserList {
     String title = data['title'];
     return UserList(title);
   }
+
+
 }
 
