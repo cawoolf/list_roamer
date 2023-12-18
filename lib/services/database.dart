@@ -8,6 +8,8 @@ import 'firestore_service.dart';
 
 abstract class Database {
   Stream<UserMarker> getTestMarker();
+  Stream<UserList> listStream();
+  Stream<UserMarker> markerStream();
 }
 
 class FirestoreDatabase implements Database {
@@ -24,6 +26,19 @@ class FirestoreDatabase implements Database {
       path: APIPath.location(locationId: testLocationId, listId: testListId),
       builder: (data, documentId) => UserMarker.createMarker(data!) as UserMarker,
   );
+
+  @override
+  Stream<UserList> listStream() {
+    return _service.documentStream(
+        path: APIPath.userLists(userId: 'testUser'),
+        builder: (data, documentId) => UserList.fromMap(data!));
+  }
+
+  @override
+  Stream<UserMarker> markerStream() {
+    // TODO: implement markerStream
+    throw UnimplementedError();
+  }
 
   // /users/testUser/lists/testList_1/location_markers/test_location_1
 
