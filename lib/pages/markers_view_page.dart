@@ -11,7 +11,7 @@ class MarkersViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Implement the UI to display details of the selected list.
-    String? documentId = userList?.title;
+    String? documentId = userList?.id;
     String locationCollectionPath =
         '/users/testUser/lists/$documentId/location_markers';
 

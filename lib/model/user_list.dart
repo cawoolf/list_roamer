@@ -2,12 +2,13 @@
 import 'package:flutter/src/widgets/gesture_detector.dart';
 
 class UserList {
-  UserList(this.title);
+  UserList(this.title, this.id);
+  final String id;
   final String title;
 
-  factory UserList.fromMap(Map<String, dynamic> data) {
+  factory UserList.fromMap(Map<String, dynamic> data, String documentId) {
     String title = data['title'];
-    return UserList(title);
+    return UserList(title, documentId);
   }
 
 

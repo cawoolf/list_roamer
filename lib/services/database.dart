@@ -30,8 +30,8 @@ class FirestoreDatabase implements Database {
   @override
   Stream<List<UserList>> userListsStream() {
     return _service.collectionStream(
-        path: APIPath.userLists(userId: 'testUser'),
-        builder: (data, documentId) => UserList.fromMap(data));
+        path: APIPath.userLists(userId: uid),
+        builder: (data, documentId) => UserList.fromMap(data, documentId)); // Still not really sure where the data, and documentId variables come from.
   }
 
   @override
