@@ -57,7 +57,15 @@ class ListViewPageState extends State<ListViewPage> {
                 background: Container(color: Colors.red),
                 direction: DismissDirection.endToStart,
                 onDismissed: (direction) => (),
-                child: UserListTile(list: userList, onTap: () {},),
+                child: UserListTile(list: userList, onTap: () {
+                  // Handle the navigation to a new page with the document data.
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MarkersViewPage(userList: userList),
+                    ),
+                  );
+                },),
               ));
         },
       ),

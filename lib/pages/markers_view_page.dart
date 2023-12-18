@@ -1,19 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class MarkersViewPage extends StatelessWidget {
-  final QueryDocumentSnapshot<Object?> document;
+import '../model/user_list.dart';
 
-  const MarkersViewPage({Key? key, required this.document}) : super(key: key);
+class MarkersViewPage extends StatelessWidget {
+  final UserList? userList;
+
+  const MarkersViewPage({Key? key, required this.userList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Implement the UI to display details of the selected list.
-    String documentId = document.id;
+    String? documentId = userList?.title;
     String locationCollectionPath =
         '/users/testUser/lists/$documentId/location_markers';
 
-    print(document.id);
+    print(locationCollectionPath);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Marker Read Test"),
