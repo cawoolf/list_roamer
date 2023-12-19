@@ -1,15 +1,16 @@
 
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:html';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../model/user_list.dart';
-import '../model/user_marker.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
+import 'marker_factory.dart';
 
 abstract class Database {
-  Stream<UserMarker> getTestMarker();
+
   Stream<List<UserList>> userListsStream();
-  Stream<UserMarker> markerStream();
+  Stream<List<Marker>> markerStream({required String listId});
 }
 
 class FirestoreDatabase implements Database {
@@ -17,15 +18,6 @@ class FirestoreDatabase implements Database {
   
   final String uid;
   final _service = FirestoreService.instance; //Singleton for the service class.
-
-  String testLocationId = 'test_location_1';
-  String testListId = 'testList_1';
-
-  @override
-  Stream<UserMarker> getTestMarker() => _service.documentStream(
-      path: APIPath.location(locationId: testLocationId, listId: testListId),
-      builder: (data, documentId) => UserMarker.createMarker(data!) as UserMarker,
-  );
 
   @override
   Stream<List<UserList>> userListsStream() {
@@ -35,10 +27,15 @@ class FirestoreDatabase implements Database {
   }
 
   @override
-  Stream<UserMarker> markerStream() {
-    // TODO: implement markerStream
-    throw UnimplementedError();
+  Stream<List<Marker>> markerStream({required String listId}) {
+
+    print(APIPath.locationMarkers(userId: uid, listId: listId));
+    return _service.collectionStream(
+      path: APIPath.locationMarkers(userId: uid, listId: listId),
+      builder: (data, documentId) => MarkerFactory.createMarker(data),
+    );
   }
+
 
   // /users/testUser/lists/testList_1/location_markers/test_location_1
 
