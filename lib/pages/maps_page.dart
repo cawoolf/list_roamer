@@ -6,7 +6,7 @@ import '../model/user_list.dart';
 import '../services/database.dart';
 
 class MapPage extends StatelessWidget {
-  const MapPage({Key? key, this.userList}) : super(key: key);
+  const MapPage({Key? key, required this.userList}) : super(key: key);
   final UserList? userList;
 
 
@@ -15,16 +15,17 @@ class MapPage extends StatelessWidget {
 
     final database = Provider.of<Database>(context, listen: false);
 
-    String? documentId = userList?.id;
-    String locationCollectionPath =
-        '/users/testUser/lists/$documentId/location_markers';
+    String? listId = userList?.id;
+    String listIdPath =
+        '/users/testUser/lists/$listId';
+
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ListRoamer - Colorado Peaks'),
+        title: Text('ListRoamer - $listId'),
       ),
       body: StreamBuilder<List<Marker>>(
-        stream: database.markerStream(listId: 'testList_1'),
+        stream: database.markerStream(listId: listId as String),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();

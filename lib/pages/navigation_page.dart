@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:list_roamer/pages/maps_page.dart';
+import '../model/user_list.dart';
 import '../services/database.dart';
 import '../services/helpers/tab_item.dart';
 import 'account_page.dart';
@@ -29,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> {
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
       //Takes a context argument, but passing _ since we don't need it.
-      TabItem.map: (_) => const MapPage(),
+      TabItem.map: (_) => MapPage(userList: UserList('Test','testList_1')),
       TabItem.list: (_) => const ListViewPage(),
       TabItem.home: (_) => const HomePage(),
       TabItem.account: (_) => const AccountPage(),

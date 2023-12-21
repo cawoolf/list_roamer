@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:list_roamer/model/user_list_tile.dart';
+import 'package:list_roamer/pages/maps_page.dart';
 import 'package:list_roamer/services/database.dart';
 import 'package:provider/provider.dart';
 import '../model/user_list.dart';
@@ -61,8 +62,9 @@ class ListViewPageState extends State<ListViewPage> {
                   // Handle the navigation to a new page with the document data.
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => MarkersViewPage(userList: userList),
+                    // MaterialPageRoute(
+                    //   builder: (context) => MarkersViewPage(userList: userList),
+                    MaterialPageRoute(builder: (context) => MapPage(userList: userList,)
                     ),
                   );
                 },),
