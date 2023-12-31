@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             // Bottom 2/3 of the page - List view
             Container(
               height: 2 * MediaQuery.of(context).size.height / 3,
-              child: const ListViewPage(),
+              child: ListViewPage(onUserListSelected: (UserList ) {  },), // Placeholder function
             ),
           ],
         ),

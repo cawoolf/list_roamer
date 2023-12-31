@@ -11,7 +11,8 @@ import 'markers_view_page.dart';
 
 
 class ListViewPage extends StatefulWidget {
-  const ListViewPage({Key? key});
+  const ListViewPage({Key? key, required this.onUserListSelected});
+  final Function(UserList) onUserListSelected;
 
   @override
   State<StatefulWidget> createState() => ListViewPageState();
@@ -60,13 +61,7 @@ class ListViewPageState extends State<ListViewPage> {
                 onDismissed: (direction) => (),
                 child: UserListTile(list: userList, onTap: () {
                   // Handle the navigation to a new page with the document data.
-                  Navigator.push(
-                    context,
-                    // MaterialPageRoute(
-                    //   builder: (context) => MarkersViewPage(userList: userList),
-                    MaterialPageRoute(builder: (context) => MapPage(userList: userList,)
-                    ),
-                  );
+                  widget.onUserListSelected(userList!);
                 },),
               ));
         },

@@ -19,6 +19,13 @@ class NavigationPage extends StatefulWidget {
 // Keeps track of which tab we are on
 class _NavigationPageState extends State<NavigationPage> {
   TabItem _currentTab = TabItem.home;
+  UserList? selectedListForMap;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedListForMap = UserList('testUser', 'testList_1');
+  }
 
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
     TabItem.map: GlobalKey<NavigatorState>(),
@@ -30,16 +37,24 @@ class _NavigationPageState extends State<NavigationPage> {
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
       //Takes a context argument, but passing _ since we don't need it.
-      TabItem.map: (_) => MapPage(userList: UserList('Test','testList_1')),
-      TabItem.list: (_) => const ListViewPage(),
+      TabItem.map: (_) => MapPage(userList: selectedListForMap),
+      TabItem.list: (_) => ListViewPage(onUserListSelected: _onUserListSelected,),
       TabItem.home: (_) => const HomePage(),
       TabItem.account: (_) => const AccountPage(),
     };
   }
 
+  void _onUserListSelected(UserList userList) {
+    setState(() {
+      selectedListForMap = userList;
+    });
+    _select(TabItem.map);
+  }
+
   void _select(TabItem tabItem) {
     if(tabItem == _currentTab) {
       //pop to first route
+      print('Current Tab: $_currentTab');
       navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
     }
     else {
