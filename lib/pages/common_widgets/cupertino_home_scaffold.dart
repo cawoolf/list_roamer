@@ -29,7 +29,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
         onTap: (index) => onSelectTab(TabItem.values[index]),
       ),
       tabBuilder: (BuildContext context, int index) {
-        final item = TabItem.values[index];
+        final item = TabItem.values[index]; // Here is where the bug is.. 
         return CupertinoTabView(
           navigatorKey: navigatorKeys[item],
           builder: (context) => widgetBuilders[item]!(
