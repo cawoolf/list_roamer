@@ -19,6 +19,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
+      controller: CupertinoTabController(initialIndex: TabItem.values.indexOf(currentTab)),
       tabBar: CupertinoTabBar(
         items: [
           _buildItem(TabItem.map),
