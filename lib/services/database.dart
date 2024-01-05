@@ -29,7 +29,7 @@ class FirestoreDatabase implements Database {
   @override
   Stream<List<Marker>> markerStream({required String listId}) {
 
-    print(APIPath.locationMarkers(userId: uid, listId: listId));
+    // print(APIPath.locationMarkers(userId: uid, listId: listId));
     return _service.collectionStream(
       path: APIPath.locationMarkers(userId: uid, listId: listId),
       builder: (data, documentId) => MarkerFactory.createMarker(data),

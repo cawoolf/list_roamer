@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:list_roamer/pages/maps_page.dart';
 import '../model/user_list.dart';
-import '../services/database.dart';
 import '../services/helpers/tab_item.dart';
 import 'account_page.dart';
 import 'common_widgets/cupertino_home_scaffold.dart';
 import 'home_page.dart';
 import 'list_view_page.dart';
-import 'package:provider/provider.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({Key? key}) : super(key: key);
@@ -39,7 +37,7 @@ class _NavigationPageState extends State<NavigationPage> {
       //Takes a context argument, but passing _ since we don't need it.
       TabItem.map: (_) => MapPage(userList: selectedListForMap),
       TabItem.list: (_) => ListViewPage(onUserListSelected: _onUserListSelected,),
-      TabItem.home: (_) => const HomePage(),
+      TabItem.home: (_) => HomePage(onUserListSelected: _onUserListSelected,),
       TabItem.account: (_) => const AccountPage(),
     };
   }
@@ -53,8 +51,6 @@ class _NavigationPageState extends State<NavigationPage> {
 
   void _select(TabItem tabItem) {
     if(tabItem == _currentTab) {
-      //pop to first route
-      print('Current Tab: $_currentTab');
       navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
     }
     else {
@@ -65,9 +61,6 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    final database = Provider.of<Database>(context, listen: false);
-
 
     return WillPopScope(
       onWillPop: () async{

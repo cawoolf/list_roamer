@@ -16,9 +16,6 @@ class MapPage extends StatelessWidget {
     final database = Provider.of<Database>(context, listen: false);
 
     String? listId = userList?.id;
-    String listIdPath =
-        '/users/testUser/lists/$listId';
-
 
     return Scaffold(
       appBar: AppBar(
@@ -34,8 +31,6 @@ class MapPage extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           } else {
             List<Marker> markers = snapshot.data ?? [];
-            print('Markers: $markers');
-
 
             return GoogleMap(
               onMapCreated: (GoogleMapController controller) {

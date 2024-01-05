@@ -15,7 +15,6 @@ class MarkersViewPage extends StatelessWidget {
     String locationCollectionPath =
         '/users/testUser/lists/$documentId/location_markers';
 
-    print(locationCollectionPath);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Marker Read Test"),

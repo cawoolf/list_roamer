@@ -1,50 +1,26 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:list_roamer/model/user_list_tile.dart';
-import 'package:list_roamer/pages/maps_page.dart';
 import 'package:list_roamer/services/database.dart';
 import 'package:provider/provider.dart';
 import '../model/user_list.dart';
 import '../services/helpers/list_item_builder.dart';
 import 'markers_view_page.dart';
 
+class ListViewPage extends StatelessWidget {
+  const ListViewPage({Key? key, required this.onUserListSelected})
+      : super(key: key);
 
-class ListViewPage extends StatefulWidget {
-  const ListViewPage({Key? key, required this.onUserListSelected});
   final Function(UserList) onUserListSelected;
 
   @override
-  State<StatefulWidget> createState() => ListViewPageState();
-}
-
-class ListViewPageState extends State<ListViewPage> {
-  @override
-  void initState() {
-    super.initState();
-    fireBaseReadTest();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return fireBaseReadTest();
-  }
-
-  Scaffold fireBaseReadTest() {
-
-    final database = Provider.of<Database>(context, listen: false);
-    // String locationCollectionPath =
-    //     '/users/testUser/lists/testList_1/location_markers';
-    //
-    // String listCollectionPath =
-    //     '/users/testUser/lists';
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("List Read Test"),
       ),
       body: StreamBuilder<List<UserList?>>(
-        stream: database.userListsStream(),
+        stream: Provider.of<Database>(context, listen: false).userListsStream(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
@@ -52,21 +28,43 @@ class ListViewPageState extends State<ListViewPage> {
             );
           }
 
-          return ListItemsBuilder(
-              snapshot: snapshot,
-              itemBuilder: (context, userList) => Dismissible(
-                key: Key('userList-${userList?.title}'),
-                background: Container(color: Colors.red),
-                direction: DismissDirection.endToStart,
-                onDismissed: (direction) => (),
-                child: UserListTile(list: userList, onTap: () {
-                  // Handle the navigation to a new page with the document data.
-                  widget.onUserListSelected(userList!);
-                },),
-              ));
+          return Stack(
+            children: [
+              ListItemsBuilder(
+                snapshot: snapshot,
+                itemBuilder: (context, userList) => Dismissible(
+                  key: Key('userList-${userList?.title}'),
+                  background: Container(color: Colors.red),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) => (),
+                  child: UserListTile(
+                    list: userList,
+                    onTap: () {
+                      // Handle the navigation to a new page with the document data.
+                      onUserListSelected(userList!);
+                    },
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 56.0,
+                right: 16.0,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    // Handle the onTap function for the plus icon (Add more lists).
+                    // Add your logic here.
+                    print('Add more lists tapped!');
+                  },
+                  child: Icon(Icons.add),
+                ),
+              ),
+            ],
+          );
         },
       ),
     );
   }
 }
+
+
 

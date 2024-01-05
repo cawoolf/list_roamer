@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:list_roamer/pages/list_view_page.dart';
 
+import '../model/user_list.dart';
+
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.onUserListSelected});
+  final Function(UserList) onUserListSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class HomePage extends StatelessWidget {
             // Bottom 2/3 of the page - List view
             Container(
               height: 2 * MediaQuery.of(context).size.height / 3,
-              child: ListViewPage(onUserListSelected: (UserList ) {  },), // Placeholder function
+              child: ListViewPage(onUserListSelected: onUserListSelected), // Placeholder function
             ),
           ],
         ),
