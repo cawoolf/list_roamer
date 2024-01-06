@@ -54,6 +54,9 @@ class ListViewPage extends StatelessWidget {
                     // Handle the onTap function for the plus icon (Add more lists).
                     // Add your logic here.
                     print('Add more lists tapped!');
+                    UserList testWrite = UserList(title: 'Test Write List 1', id: 'testList_3', category: 'testing');
+                    Provider.of<Database>(context, listen: false).setUserList(testWrite);
+
                   },
                   child: Icon(Icons.add),
                 ),
