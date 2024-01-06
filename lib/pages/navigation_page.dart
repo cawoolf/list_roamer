@@ -22,7 +22,7 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   void initState() {
     super.initState();
-    selectedListForMap = UserList('testUser', 'testList_1');
+    selectedListForMap = UserList(id: 'testList_1', title:'My Test List 1', category: 'testing');
   }
 
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {

@@ -16,10 +16,11 @@ class MapPage extends StatelessWidget {
     final database = Provider.of<Database>(context, listen: false);
 
     String? listId = userList?.id;
+    String? listTitle = userList?.title;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('ListRoamer - $listId'),
+        title: Text('ListRoamer - $listTitle'),
       ),
       body: StreamBuilder<List<Marker>>(
         stream: database.markerStream(listId: listId as String),
