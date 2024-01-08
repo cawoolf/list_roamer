@@ -56,7 +56,6 @@ class _NavigationPageState extends State<NavigationPage> {
     else {
       setState(() => _currentTab = tabItem);
     }
-
   }
 
   @override

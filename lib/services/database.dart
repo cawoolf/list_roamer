@@ -14,6 +14,9 @@ abstract class Database {
   Stream<List<Marker>> markerStream({required String listId});
 }
 
+// Used for generating a unique ID for the Job document
+String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
+
 class FirestoreDatabase implements Database {
   FirestoreDatabase({required this.uid});
   

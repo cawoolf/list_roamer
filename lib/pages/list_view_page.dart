@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:list_roamer/model/user_list_tile.dart';
 import 'package:list_roamer/services/database.dart';
+import 'package:list_roamer/services/helpers/json_helper.dart';
 import 'package:provider/provider.dart';
 import '../model/user_list.dart';
 import '../services/helpers/list_item_builder.dart';
@@ -40,9 +40,13 @@ class ListViewPage extends StatelessWidget {
                   child: UserListTile(
                     list: userList,
                     onTap: () {
-                      // Handle the navigation to a new page with the document data.
+                      // Call to back the navigationPage, which causes the MapPage to load the data from the selected List
                       onUserListSelected(userList!);
-                    },
+                    }, onTrailingTap: () {
+                      // Handle the navigation to a new page with the document data.
+                    //I need to implement this first before I can load lists from JS
+                    editList(context, userList!);
+                  },
                   ),
                 ),
               ),
@@ -53,10 +57,7 @@ class ListViewPage extends StatelessWidget {
                   onPressed: () {
                     // Handle the onTap function for the plus icon (Add more lists).
                     // Add your logic here.
-                    print('Add more lists tapped!');
-                    UserList testWrite = UserList(title: 'Test Write List 1', id: 'testList_3', category: 'testing');
-                    Provider.of<Database>(context, listen: false).setUserList(testWrite);
-
+                    writeTestList(context);
                   },
                   child: Icon(Icons.add),
                 ),
@@ -66,6 +67,17 @@ class ListViewPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void editList(BuildContext context, UserList userList) {
+
+     MarkersViewPage.show(context, userList: userList, database: Provider.of<Database>(context, listen: false));
+
+  }
+  void writeTestList(BuildContext context) {
+    print('Add more lists tapped!');
+    UserList testWrite = UserList(title: 'Test Write List 1',category: 'testing',id: documentIdFromCurrentDate());
+    Provider.of<Database>(context, listen: false).setUserList(testWrite);
   }
 }
 
