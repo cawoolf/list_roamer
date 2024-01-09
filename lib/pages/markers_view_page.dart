@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:list_roamer/services/database.dart';
 
 import '../model/user_list.dart';
+import '../model/user_marker.dart';
 
 class MarkersViewPage extends StatelessWidget {
   final UserList? userList;
@@ -27,9 +28,9 @@ class MarkersViewPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Marker Read Test"),
       ),
-      body: StreamBuilder<List<Marker>>(
+      body: StreamBuilder<List<UserMarker>>(
         stream: database.markerStream(listId: listId), // Use the new method here
-        builder: (BuildContext context, AsyncSnapshot<List<Marker>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<UserMarker>> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -37,7 +38,7 @@ class MarkersViewPage extends StatelessWidget {
           }
 
           return ListView(
-            children: snapshot.data!.map((Marker marker) {
+            children: snapshot.data!.map((UserMarker marker) {
               return Column(
                 children: buildMarkerListView(marker),
               );
@@ -60,12 +61,12 @@ class MarkersViewPage extends StatelessWidget {
 
 
   // Need to create a UserMarker class just like for UserLists
-  List<Widget> buildMarkerListView(Marker marker) {
+  List<Widget> buildMarkerListView(UserMarker marker) {
     return [
       ListTile(title: Text(marker.name)), // Assuming 'name' is a property of your Marker class
       ListTile(title: Text(marker.snippet)),
-      ListTile(title: Text(marker.latitude)),
-      ListTile(title: Text(marker.longitude)),
+      ListTile(title: Text(marker.latitude.toString())),
+      ListTile(title: Text(marker.longitude.toString())),
     ];
   }
 

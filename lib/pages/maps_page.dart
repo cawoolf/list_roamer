@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import '../model/user_list.dart';
+import '../model/user_marker.dart';
 import '../services/database.dart';
 
 class MapPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class MapPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('ListRoamer - $listTitle'),
       ),
-      body: StreamBuilder<List<Marker>>(
+      body: StreamBuilder<List<UserMarker>>(
         stream: database.markerStream(listId: listId as String),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -31,7 +32,7 @@ class MapPage extends StatelessWidget {
             print('Error: ${snapshot.error}');
             return Text('Error: ${snapshot.error}');
           } else {
-            List<Marker> markers = snapshot.data ?? [];
+            List<UserMarker> markers = snapshot.data ?? [];
 
             return GoogleMap(
               onMapCreated: (GoogleMapController controller) {

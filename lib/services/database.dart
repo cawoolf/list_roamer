@@ -3,6 +3,7 @@ import 'dart:html';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../model/user_list.dart';
+import '../model/user_marker.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
 import 'marker_factory.dart';
@@ -11,7 +12,7 @@ abstract class Database {
 
   Future<void> setUserList(UserList userList);
   Stream<List<UserList>> userListsStream();
-  Stream<List<Marker>> markerStream({required String listId});
+  Stream<List<UserMarker>> markerStream({required String listId});
 }
 
 // Used for generating a unique ID for the Job document
@@ -36,10 +37,10 @@ class FirestoreDatabase implements Database {
   }
 
   @override
-  Stream<List<Marker>> markerStream({required String listId}) {
+  Stream<List<UserMarker>> markerStream({required String listId}) {
     return _service.collectionStream(
       path: APIPath.locationMarkers(userId: uid, listId: listId),
-      builder: (data, documentId) => MarkerFactory.createMarker(data),
+      builder: (data, documentId) => MarkerFactory.createMarker(data) as UserMarker,
     );
   }
 
