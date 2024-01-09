@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:list_roamer/services/database.dart';
 
 import '../model/user_list.dart';
@@ -19,16 +20,16 @@ class MarkersViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? documentId = userList?.id;
-    String locationCollectionPath = '/users/testUser/lists/$documentId/location_markers';
+    String listId = userList!.id;
+    String locationCollectionPath = '/users/testUser/lists/$listId/location_markers';
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Marker Read Test"),
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection(locationCollectionPath).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      body: StreamBuilder<List<Marker>>(
+        stream: database.markerStream(listId: listId), // Use the new method here
+        builder: (BuildContext context, AsyncSnapshot<List<Marker>> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -36,9 +37,9 @@ class MarkersViewPage extends StatelessWidget {
           }
 
           return ListView(
-            children: snapshot.data!.docs.map((document) {
+            children: snapshot.data!.map((Marker marker) {
               return Column(
-                children: buildMarkerListView(document),
+                children: buildMarkerListView(marker),
               );
             }).toList(),
           );
@@ -57,12 +58,14 @@ class MarkersViewPage extends StatelessWidget {
     );
   }
 
-  List<Widget> buildMarkerListView(QueryDocumentSnapshot<Object?> document) {
+
+  // Need to create a UserMarker class just like for UserLists
+  List<Widget> buildMarkerListView(Marker marker) {
     return [
-      ListTile(title: Text(document['name'])),
-      ListTile(title: Text(document['snippet'])),
-      ListTile(title: Text(document['latitude'])),
-      ListTile(title: Text(document['longitude'])),
+      ListTile(title: Text(marker.name)), // Assuming 'name' is a property of your Marker class
+      ListTile(title: Text(marker.snippet)),
+      ListTile(title: Text(marker.latitude)),
+      ListTile(title: Text(marker.longitude)),
     ];
   }
 
