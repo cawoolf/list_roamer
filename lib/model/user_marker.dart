@@ -19,26 +19,6 @@ class UserMarker extends Marker {
   final double latitude;
   final double longitude;
 
-  factory UserMarker.fromMap(Map<String, dynamic> data) {
-    String name = data['name'];
-    String snippet = data['snippet'];
-    double latitude = data['latitude'];
-    double longitude = data['longitude'];
-
-    return UserMarker(
-      name: name,
-      snippet: snippet,
-      latitude: latitude,
-      longitude: longitude,
-      markerId: MarkerId(name),
-      position: LatLng(latitude, longitude),
-      infoWindow: InfoWindow(
-        title: name,
-        snippet: '$snippet',
-      ),
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'name': name,
