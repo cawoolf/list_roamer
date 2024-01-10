@@ -40,7 +40,7 @@ class FirestoreDatabase implements Database {
   Stream<List<UserMarker>> markerStream({required String listId}) {
     return _service.collectionStream(
       path: APIPath.locationMarkers(userId: uid, listId: listId),
-      builder: (data, documentId) => MarkerFactory.createMarker(data) as UserMarker,
+      builder: (data, documentId) => MarkerFactory.createMarker(data),
     );
   }
 

@@ -9,7 +9,10 @@ class UserMarker extends Marker {
     required super.markerId,
     required LatLng position,
     required InfoWindow infoWindow,
-  });
+  }) : super(
+    position: position,
+    infoWindow: infoWindow,
+  );
 
   final String name;
   final String snippet;

@@ -36,6 +36,7 @@ class MarkersViewPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+            // print('Inside MarkersViewPage stream - ${snapshot.data}');
 
           return ListView(
             children: snapshot.data!.map((UserMarker marker) {
