@@ -27,6 +27,7 @@ class MarkersViewPage extends StatelessWidget {
         title: const Text("Marker Read Test"),
       ),
       body: StreamBuilder(
+        // I'd like to refactor this right here, but it's hard..
         stream: FirebaseFirestore.instance.collection(locationCollectionPath).snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
