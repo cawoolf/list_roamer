@@ -29,7 +29,7 @@ class MapPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
           } else if (snapshot.hasError) {
-            print('Error: ${snapshot.error}');
+            print('Maps Page - Error: ${snapshot.error}');
             return Text('Error: ${snapshot.error}');
           } else {
             List<UserMarker> markers = snapshot.data ?? [];

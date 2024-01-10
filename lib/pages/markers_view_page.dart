@@ -22,7 +22,6 @@ class MarkersViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String listId = userList!.id;
-    String locationCollectionPath = '/users/testUser/lists/$listId/location_markers';
 
     return Scaffold(
       appBar: AppBar(
