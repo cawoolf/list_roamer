@@ -28,36 +28,40 @@ class MarkersViewPage extends StatelessWidget {
         title: const Text("Marker Read Test"),
       ),
       body: StreamBuilder<List<UserMarker>>(
-        stream: database.markerStream(listId: listId), // Use the new method here
+        stream: database.markerStream(listId: listId),
         builder: (BuildContext context, AsyncSnapshot<List<UserMarker>> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-            // print('Inside MarkersViewPage stream - ${snapshot.data}');
 
-          return ListView(
-            children: snapshot.data!.map((UserMarker marker) {
-              return Column(
-                children: buildMarkerListView(marker),
-              );
-            }).toList(),
+          return Stack(
+            children: [
+              ListView(
+                children: snapshot.data!.map((UserMarker marker) {
+                  return Column(
+                    children: buildMarkerListView(marker),
+                  );
+                }).toList(),
+              ),
+              Positioned(
+                bottom: 56.0,
+                right: 16.0,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    addMarkersToList();
+                  },
+                  child: Icon(Icons.add),
+                ),
+              ),
+            ],
           );
         },
       ),
-      floatingActionButton: Positioned(
-        bottom: 56.0,
-        right: 16.0,
-        child: FloatingActionButton(
-          onPressed: () {
-            addMarkersToList();
-          },
-          child: Icon(Icons.add),
-        ),
-      ),
     );
   }
+
 
 
   // Need to create a UserMarker class just like for UserLists
