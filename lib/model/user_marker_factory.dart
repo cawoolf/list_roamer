@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../model/user_marker.dart';
+import 'user_marker.dart';
 
 class MarkerFactory {
   static UserMarker createMarker(Map<String, dynamic> data) {

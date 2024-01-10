@@ -1,12 +1,8 @@
-
-import 'dart:html';
-
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../model/user_list.dart';
 import '../model/user_marker.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
-import 'marker_factory.dart';
+import '../model/user_marker_factory.dart';
 
 abstract class Database {
 
