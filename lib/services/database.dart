@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import '../model/user_list.dart';
 import '../model/user_marker.dart';
 import 'api_path.dart';
@@ -7,8 +9,10 @@ import '../model/user_marker_factory.dart';
 abstract class Database {
 
   Future<void> setUserList(UserList userList);
+  Future<void> setUserMarker(UserMarker userMarker, UserList userList, MarkerId markerId);
   Stream<List<UserList>> userListsStream();
   Stream<List<UserMarker>> markerStream({required String listId});
+
 }
 
 // Used for generating a unique ID for the Job document
@@ -24,6 +28,14 @@ class FirestoreDatabase implements Database {
   @override
   Future<void> setUserList(UserList userList) =>
       _service.setData(path: APIPath.userList(userId: uid, listId: userList.id), data: userList.toMap());
+
+  @override
+  Future<void> setUserMarker(UserMarker userMarker, UserList userList, MarkerId markerId) async {
+        print("Marker Path - ${APIPath.locationMarkerPath(userId: uid, listId: userList.id, markerId: markerId.value.toString())}");
+      _service.setData(path: APIPath.locationMarkerPath(userId: uid, listId: userList.id, markerId: markerId.value.toString()), data: userMarker.toMap());
+
+  }
+
 
   @override
   Stream<List<UserList>> userListsStream() {

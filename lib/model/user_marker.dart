@@ -20,6 +20,7 @@ class UserMarker extends Marker {
   final double longitude;
 
   Map<String, dynamic> toMap() {
+    print(this.markerId);
     return {
       'name': name,
       'snippet': snippet,

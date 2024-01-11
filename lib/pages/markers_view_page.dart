@@ -23,14 +23,13 @@ class MarkersViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String listId = userList!.id;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Marker Read Test"),
+        title: Text("Marker Read Test- ${userList!.title}"),
       ),
       body: StreamBuilder<List<UserMarker>>(
-        stream: database.markerStream(listId: listId),
+        stream: database.markerStream(listId: userList!.id),
         builder: (BuildContext context, AsyncSnapshot<List<UserMarker>> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
@@ -52,7 +51,7 @@ class MarkersViewPage extends StatelessWidget {
                 right: 16.0,
                 child: FloatingActionButton(
                   onPressed: () {
-                    addMarkersToListTest();
+                    addMarkersToListTest(userList!);
                   },
                   child: Icon(Icons.add),
                 ),
@@ -74,13 +73,13 @@ class MarkersViewPage extends StatelessWidget {
     ];
   }
 
-  void addMarkersToListTest() async {
+  void addMarkersToListTest(UserList userList) async {
     print('Add button tapped in MarkersViewPage');
     // Read the JSON Data and turn it into Markers
      List<UserMarker> peakMarkers = await createMarkersFromJson();
-     print(peakMarkers);
+     // print(peakMarkers);
     // Write those Markers to the correct list in Firebase
-    writePeaksMarkersToFirebase();
+    writePeaksMarkersToFirebase(peakMarkers, userList);
   }
 
   Future<List<UserMarker>> createMarkersFromJson() async {
@@ -90,5 +89,9 @@ class MarkersViewPage extends StatelessWidget {
     return peaksMarkers;
   }
 
-  void writePeaksMarkersToFirebase() {}
+  void writePeaksMarkersToFirebase(List<UserMarker> peaks, UserList userList) {
+    peaks.forEach((peak) {
+      database.setUserMarker(peak, userList, peak.markerId);
+    });
+  }
 }
