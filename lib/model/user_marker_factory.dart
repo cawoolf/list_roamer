@@ -16,7 +16,7 @@ class MarkerFactory {
       position: LatLng(latitude, longitude),
       infoWindow: InfoWindow(
         title: name,
-        snippet: '$snippet',
+        snippet: snippet,
       ),
       name: name,
       snippet: snippet,

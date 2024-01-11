@@ -1,33 +1,33 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../model/user_marker.dart';
+
 class PeakMarkerHelper {
-  static Marker createMarker(Map<String, dynamic> peakData) {
+  static UserMarker createMarker(Map<String, dynamic> peakData) {
     String name = peakData['name'];
     double elevation = peakData['elevation'].toDouble();
+    String snippet = 'Elevation: $elevation meters';
     double latitude = peakData['coordinates']['latitude'].toDouble();
     double longitude = peakData['coordinates']['longitude'].toDouble();
 
-    return Marker(
+    return UserMarker(
       markerId: MarkerId(name),
       position: LatLng(latitude, longitude),
       infoWindow: InfoWindow(
         title: name,
-        snippet: 'Elevation: $elevation meters',
+        snippet: snippet,
       ),
+      name: name,
+      snippet: snippet,
+      latitude: latitude,
+      longitude: longitude,
     );
   }
 
-  static List<Marker> getPeakMarkers({required List<dynamic> peaks}) {
-    List<Marker> newMarkers = peaks.map((peak) {
-      return Marker(
-        markerId: MarkerId(peak['name']),
-        position: LatLng(peak['coordinates']['latitude'],
-            peak['coordinates']['longitude']),
-        infoWindow:
-        InfoWindow(title: peak['name'], snippet: '${peak['elevation']} feet'),
-      );
+  static List<UserMarker> getPeakMarkers({required List<dynamic> peaks}) {
+    List<UserMarker> peakMarkers = peaks.map((peak) {
+      return PeakMarkerHelper.createMarker(peak);
     }).toList();
-
-    return newMarkers;
+    return peakMarkers;
   }
 }

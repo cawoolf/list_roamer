@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:list_roamer/services/database.dart';
+import 'package:list_roamer/services/helpers/json_helper.dart';
+import 'package:list_roamer/services/helpers/peak_marker_helper.dart';
 
 import '../model/user_list.dart';
 import '../model/user_marker.dart';
@@ -50,7 +52,7 @@ class MarkersViewPage extends StatelessWidget {
                 right: 16.0,
                 child: FloatingActionButton(
                   onPressed: () {
-                    addMarkersToList();
+                    addMarkersToListTest();
                   },
                   child: Icon(Icons.add),
                 ),
@@ -62,8 +64,6 @@ class MarkersViewPage extends StatelessWidget {
     );
   }
 
-
-
   // Need to create a UserMarker class just like for UserLists
   List<Widget> buildMarkerListView(UserMarker marker) {
     return [
@@ -74,7 +74,21 @@ class MarkersViewPage extends StatelessWidget {
     ];
   }
 
-  void addMarkersToList() {
+  void addMarkersToListTest() async {
     print('Add button tapped in MarkersViewPage');
+    // Read the JSON Data and turn it into Markers
+     List<UserMarker> peakMarkers = await createMarkersFromJson();
+     print(peakMarkers);
+    // Write those Markers to the correct list in Firebase
+    writePeaksMarkersToFirebase();
   }
+
+  Future<List<UserMarker>> createMarkersFromJson() async {
+    Future<List<dynamic>> peakJsonData = JSONHelper.loadJsonData(assetRoute: 'assets/json_data/peak_location.json', dataName: 'peaks');
+    List<dynamic> peaks = await peakJsonData;
+    List<UserMarker> peaksMarkers = PeakMarkerHelper.getPeakMarkers(peaks: peaks);
+    return peaksMarkers;
+  }
+
+  void writePeaksMarkersToFirebase() {}
 }
