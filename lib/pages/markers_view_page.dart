@@ -73,25 +73,28 @@ class MarkersViewPage extends StatelessWidget {
   void addMarkersToListTest(UserList userList) async {
     print('Add button tapped in MarkersViewPage');
     // Read the JSON Data and turn it into Markers
-    String peaksAssetRoute = 'assets/json_data/peak_location.json'; // Peak data
+    String peaksAssetRoute = 'assets/json_data/peak_location.json'; // Peak data\
+    String peaksDataName = 'peaks';
     String sushiAssetRoute = 'assets/json_data/sushi_location.json';
+    String sushiDataName = 'denver_sushi';
 
-     List<UserMarker> jsonMarkers = await createMarkersFromJson(sushiAssetRoute);
+     List<UserMarker> jsonMarkers = await createMarkersFromJson(sushiAssetRoute, sushiDataName);
+    // List<UserMarker> jsonMarkers = await createMarkersFromJson(peaksAssetRoute, peaksDataName);
      // print(jsonMarkers);
     // Write those Markers to the correct list in Firebase
     writePeaksMarkersToFirebase(jsonMarkers, userList);
   }
 
-  Future<List<UserMarker>> createMarkersFromJson(String assetRoute) async {
-    Future<List<dynamic>> peakJsonData = JSONHelper.loadJsonData(assetRoute: assetRoute, dataName: 'peaks');
-    List<dynamic> peaks = await peakJsonData;
-    List<UserMarker> peaksMarkers = JsonMarkerHelper.getJsonMarkers(jsonData: peaks);
-    return peaksMarkers;
+  Future<List<UserMarker>> createMarkersFromJson(String assetRoute, String dataName) async {
+    Future<List<dynamic>> jsonData = JSONHelper.loadJsonData(assetRoute: assetRoute, dataName: dataName);
+    List<dynamic> data = await jsonData;
+    List<UserMarker> jsonMarkers = JsonMarkerHelper.getJsonMarkers(jsonData: data);
+    return jsonMarkers;
   }
 
-  void writePeaksMarkersToFirebase(List<UserMarker> peaks, UserList userList) {
-    peaks.forEach((peak) {
-      database.setUserMarker(peak, userList, peak.markerId);
+  void writePeaksMarkersToFirebase(List<UserMarker> jsonMarkers, UserList userList) {
+    jsonMarkers.forEach((marker) {
+      database.setUserMarker(marker, userList, marker.markerId);
     });
   }
 }
