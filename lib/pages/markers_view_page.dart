@@ -78,7 +78,7 @@ class MarkersViewPage extends StatelessWidget {
     String sushiAssetRoute = 'assets/json_data/sushi_location.json';
     String sushiDataName = 'sushi';
 
-     List<UserMarker> jsonMarkers = await createMarkersFromJson(sushiAssetRoute, peaksDataName);
+     List<UserMarker> jsonMarkers = await createMarkersFromJson(sushiAssetRoute, sushiDataName);
     // List<UserMarker> jsonMarkers = await createMarkersFromJson(peaksAssetRoute, peaksDataName);
      // print(jsonMarkers);
     // Write those Markers to the correct list in Firebase
