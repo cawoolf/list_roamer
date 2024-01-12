@@ -1,0 +1,84 @@
+{
+  "sushi_restaurants": [
+    {
+      "name": "Sushi Restaurant 1",
+      "snippet": "Rating: 4.5",
+      "location": {
+        "latitude": 39.7392,
+        "longitude": -104.9903
+      }
+    },
+    {
+      "name": "Sushi Restaurant 2",
+      "snippet": "Rating: 4.2",
+      "location": {
+        "latitude": 39.7618,
+        "longitude": -104.8811
+      }
+    },
+    {
+      "name": "Sushi Restaurant 3",
+      "snippet": "Rating: 4.0",
+      "location": {
+        "latitude": 39.7394,
+        "longitude": -104.9863
+      }
+    },
+    {
+      "name": "Sushi Restaurant 4",
+      "snippet": "Rating: 4.8",
+      "location": {
+        "latitude": 39.7391,
+        "longitude": -104.9905
+      }
+    },
+    {
+      "name": "Sushi Restaurant 5",
+      "snippet": "Rating: 4.4",
+      "location": {
+        "latitude": 39.7396,
+        "longitude": -104.9844
+      }
+    },
+    {
+      "name": "Sushi Restaurant 6",
+      "snippet": "Rating: 4.6",
+      "location": {
+        "latitude": 39.7387,
+        "longitude": -104.9849
+      }
+    },
+    {
+      "name": "Sushi Restaurant 7",
+      "snippet": "Rating: 4.3",
+      "location": {
+        "latitude": 39.7395,
+        "longitude": -104.9870
+      }
+    },
+    {
+      "name": "Sushi Restaurant 8",
+      "snippet": "Rating: 4.7",
+      "location": {
+        "latitude": 39.7393,
+        "longitude": -104.9848
+      }
+    },
+    {
+      "name": "Sushi Restaurant 9",
+      "snippet": "Rating: 4.1",
+      "location": {
+        "latitude": 39.7390,
+        "longitude": -104.9826
+      }
+    },
+    {
+      "name": "Sushi Restaurant 10",
+      "snippet": "Rating: 4.9",
+      "location": {
+        "latitude": 39.7398,
+        "longitude": -104.9820
+      }
+    }
+  ]
+}

@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:list_roamer/services/database.dart';
 import 'package:list_roamer/services/helpers/json_helper.dart';
-import 'package:list_roamer/services/helpers/peak_marker_helper.dart';
-
+import 'package:list_roamer/services/helpers/json_marker_helper.dart';
 import '../model/user_list.dart';
 import '../model/user_marker.dart';
 
@@ -76,16 +73,19 @@ class MarkersViewPage extends StatelessWidget {
   void addMarkersToListTest(UserList userList) async {
     print('Add button tapped in MarkersViewPage');
     // Read the JSON Data and turn it into Markers
-     List<UserMarker> peakMarkers = await createMarkersFromJson();
-     // print(peakMarkers);
+    String peaksAssetRoute = 'assets/json_data/peak_location.json'; // Peak data
+    String sushiAssetRoute = 'assets/json_data/sushi_location.json';
+
+     List<UserMarker> jsonMarkers = await createMarkersFromJson(sushiAssetRoute);
+     // print(jsonMarkers);
     // Write those Markers to the correct list in Firebase
-    writePeaksMarkersToFirebase(peakMarkers, userList);
+    writePeaksMarkersToFirebase(jsonMarkers, userList);
   }
 
-  Future<List<UserMarker>> createMarkersFromJson() async {
-    Future<List<dynamic>> peakJsonData = JSONHelper.loadJsonData(assetRoute: 'assets/json_data/peak_location.json', dataName: 'peaks');
+  Future<List<UserMarker>> createMarkersFromJson(String assetRoute) async {
+    Future<List<dynamic>> peakJsonData = JSONHelper.loadJsonData(assetRoute: assetRoute, dataName: 'peaks');
     List<dynamic> peaks = await peakJsonData;
-    List<UserMarker> peaksMarkers = PeakMarkerHelper.getPeakMarkers(peaks: peaks);
+    List<UserMarker> peaksMarkers = JsonMarkerHelper.getJsonMarkers(jsonData: peaks);
     return peaksMarkers;
   }
 
