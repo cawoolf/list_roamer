@@ -1,6 +1,4 @@
 
-import 'package:flutter/src/widgets/gesture_detector.dart';
-
 class UserList {
   UserList({required this.title, required this.category, required this.id});
   final String title;
