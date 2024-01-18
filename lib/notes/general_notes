@@ -1,5 +1,10 @@
 Feature:  json markers - 5- Json file loading completed
 
+
+***1/17/23***
+REMEMBER if data is corrupted in Firestore, it causes issues with loading the lists. Some how the
+Stream is corrupted, and it breaks. Happened from Script Test.
+
 ***12/6/23***
 Connected to DB which is good. Just need to make the ListViewPage behave the same as the JobsPage from TTF
 
