@@ -1,0 +1,84 @@
+{
+  "crags": [
+    {
+      "name": "Rock Climbing in Indian Creek, Southeast Utah",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 38.026,
+        "longitude": -109.54
+      }
+    },
+    {
+      "name": "Rock Climbing in Castle Valley, Southeast Utah",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 38.684,
+        "longitude": -109.423
+      }
+    },
+    {
+      "name": "Climbing in Saint George, Southwest Utah",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 37.051,
+        "longitude": -113.593
+      }
+    },
+    {
+      "name": "Rock Climbing in Kolob Canyon, Zion National Park",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 37.454,
+        "longitude": -113.184
+      }
+    },
+    {
+      "name": "Climbing in Clear Creek Canyon, Golden",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 39.754,
+        "longitude": -105.24
+      }
+    },
+    {
+      "name": "Rock Climbing in Eldorado Canyon State Park, Boulder",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 39.932,
+        "longitude": -105.281
+      }
+    },
+    {
+      "name": "Climbing in Castlewood Canyon SP, Denver South",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 39.331,
+        "longitude": -104.739
+      }
+    },
+    {
+      "name": "Climbing in Poudre Canyon, Fort Collins",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 40.693,
+        "longitude": -105.378
+      }
+    },
+    {
+      "name": "Rock Climbing in Reimers Ranch, Austin Area",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 30.334,
+        "longitude": -98.122
+      }
+    },
+    {
+      "name": "Climbing in Taos Area, Taos Area",
+      "snippet": "One of Cams many crags",
+      "coordinates": {
+        "latitude": 36.406,
+        "longitude": -105.574
+      }
+    }
+  ]
+}

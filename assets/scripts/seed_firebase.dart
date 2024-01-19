@@ -18,12 +18,12 @@ void readTest() async {
 }
 
 void writeTest() async {
-  var path = '/users/testUser/lists/scriptTestList/location_markers/Flutter Peak 2';
+  var path = '/users/testUser/lists/scriptTestList/location_markers/Flutter Peak 4';
   Map<String, dynamic> data = {
-    "name": "Flutter Peak 2",
+    "name": "Flutter Peak 4",
     "snippet": "Elevation 15000",
-    "latitude": 40.7128,
-    "longitude": -74.0060,
+    "latitude": 40,
+    "longitude": -74,
   };
   final reference = Firestore.instance.document(path);
   print('$path: $data');
