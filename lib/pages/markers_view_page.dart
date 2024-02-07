@@ -104,4 +104,5 @@ class MarkersViewPage extends StatelessWidget {
       database.setUserMarker(marker, userList, marker.markerId);
     });
   }
+
 }

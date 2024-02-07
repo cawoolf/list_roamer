@@ -79,6 +79,10 @@ class ListViewPage extends StatelessWidget {
     UserList testWrite = UserList(title: 'Test Write List 1',category: 'testing',id: documentIdFromCurrentDate());
     Provider.of<Database>(context, listen: false).setUserList(testWrite);
   }
+
+  void triggerCreateListModal() {
+
+  }
 }
 
 
