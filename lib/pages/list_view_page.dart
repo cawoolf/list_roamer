@@ -5,6 +5,7 @@ import 'package:list_roamer/services/helpers/json_helper.dart';
 import 'package:provider/provider.dart';
 import '../model/user_list.dart';
 import '../services/helpers/list_item_builder.dart';
+import '../ui_widgets/create_list_modal.dart';
 import 'markers_view_page.dart';
 
 class ListViewPage extends StatelessWidget {
@@ -57,7 +58,8 @@ class ListViewPage extends StatelessWidget {
                   onPressed: () {
                     // Handle the onTap function for the plus icon (Add more lists).
                     // Add your logic here.
-                    writeTestList(context);
+                    // writeTestList(context);
+                    triggerCreateListModal(context);
                   },
                   child: Icon(Icons.add),
                 ),
@@ -80,8 +82,18 @@ class ListViewPage extends StatelessWidget {
     Provider.of<Database>(context, listen: false).setUserList(testWrite);
   }
 
-  void triggerCreateListModal() {
-
+  void triggerCreateListModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return CreateListModal(
+          closeModal: () {
+            Navigator.of(context).pop(); // Close the modal when needed
+          },
+        );
+      },
+    );
   }
 }
 
