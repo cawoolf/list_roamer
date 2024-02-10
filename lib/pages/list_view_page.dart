@@ -76,9 +76,15 @@ class ListViewPage extends StatelessWidget {
      MarkersViewPage.show(context, userList: userList, database: Provider.of<Database>(context, listen: false));
 
   }
-  void writeTestList(BuildContext context) {
-    print('Add more lists tapped!');
-    UserList testWrite = UserList(title: 'Test Write List 1',category: 'testing',id: documentIdFromCurrentDate());
+  // void writeTestList(BuildContext context) {
+  //   print('Add more lists tapped!');
+  //   UserList testWrite = UserList(title: 'Test Write List 1',category: 'testing',id: documentIdFromCurrentDate());
+  //   Provider.of<Database>(context, listen: false).setUserList(testWrite);
+  // }
+
+  void writeList(BuildContext context, String title, String category) {
+    print('list_view_page.dart line 86--> writeList called');
+    UserList testWrite = UserList(title: title,category: category,id: documentIdFromCurrentDate());
     Provider.of<Database>(context, listen: false).setUserList(testWrite);
   }
 
@@ -90,6 +96,13 @@ class ListViewPage extends StatelessWidget {
         return CreateListModal(
           closeModal: () {
             Navigator.of(context).pop(); // Close the modal when needed
+          },
+          onListCreated: (String title, String category) {
+            // Handle the created list here, e.g., save it to the database
+            // You can perform actions with the received data from the modal
+            print('list_view_page.dart line 97 --> List Title: $title, Category: $category');
+            // You can also pass these values to another method for further processing
+            writeList(context, title, category);
           },
         );
       },

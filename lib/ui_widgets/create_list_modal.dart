@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateListModal extends StatefulWidget {
-  const CreateListModal({Key? key, this.closeModal}) : super(key: key);
+  const CreateListModal({Key? key, required this.closeModal, required this.onListCreated}) : super(key: key);
 
   final Function? closeModal;
+  final Function(String name, String category)? onListCreated;
 
   @override
   State<CreateListModal> createState() => _CreateListModalState();
@@ -17,7 +18,7 @@ class _CreateListModalState extends State<CreateListModal>{
   final _nameController = TextEditingController();
   final _categoryController = TextEditingController();
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   // Rive Animation examples. Need to import package.
   // late rive.SMITrigger _successAnim;
@@ -98,7 +99,7 @@ class _CreateListModalState extends State<CreateListModal>{
                        const SizedBox(height: 8),
                        TextField(
                          // decoration: authInputStyle("icon_email"),
-                         // controller: _emailController,
+                         controller: _nameController,
                        ),
                        const SizedBox(height: 24),
                        const Align(
@@ -112,10 +113,9 @@ class _CreateListModalState extends State<CreateListModal>{
                          ),
                        ),
                        const SizedBox(height: 8),
-                       const TextField(
-                         obscureText: true,
+                       TextField(
                          // decoration: authInputStyle("icon_lock"),
-                         // controller: _passController,
+                         controller: _categoryController,
                        ),
                        const SizedBox(height: 24),
                        Container(
@@ -151,7 +151,7 @@ class _CreateListModalState extends State<CreateListModal>{
                              ],
                            ),
                            onPressed: () {
-                             // if (!_isLoading) login();
+                             createList();
                            },
                          ),
                        ),
@@ -176,6 +176,12 @@ class _CreateListModalState extends State<CreateListModal>{
        ),
      ),
    );
+  }
+
+  void createList() {
+            print('create_list_modal line 183 --> Title: ${_nameController.text} Category: ${ _categoryController.text}');
+        widget.onListCreated!(_nameController.text, _categoryController.text); // Passes the back to the ListViewPage to create the List
+        widget.closeModal!(); // Closes the modal
   }
   Positioned closeIcon() {
     return Positioned(

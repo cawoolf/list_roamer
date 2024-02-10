@@ -18,7 +18,7 @@ class MapPage extends StatelessWidget {
 
     String? listId = userList?.id;
     String? listTitle = userList?.title;
-    print('maps_page.dart -> $listId');
+    // print('maps_page.dart -> $listId');
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +34,7 @@ class MapPage extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           } else {
             List<UserMarker> markers = snapshot.data ?? [];
-            print('maps_page.dart -> $markers');
+            // print('maps_page.dart -> $markers');
             return GoogleMap(
               onMapCreated: (GoogleMapController controller) {
               },
