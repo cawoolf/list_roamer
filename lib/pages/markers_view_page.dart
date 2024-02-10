@@ -48,7 +48,7 @@ class MarkersViewPage extends StatelessWidget {
                 right: 16.0,
                 child: FloatingActionButton(
                   onPressed: () {
-                    addMarkersToListTest(userList!);
+                    // addMarkersToListTest(userList!);
                   },
                   child: Icon(Icons.add),
                 ),

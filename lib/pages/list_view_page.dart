@@ -76,11 +76,6 @@ class ListViewPage extends StatelessWidget {
      MarkersViewPage.show(context, userList: userList, database: Provider.of<Database>(context, listen: false));
 
   }
-  // void writeTestList(BuildContext context) {
-  //   print('Add more lists tapped!');
-  //   UserList testWrite = UserList(title: 'Test Write List 1',category: 'testing',id: documentIdFromCurrentDate());
-  //   Provider.of<Database>(context, listen: false).setUserList(testWrite);
-  // }
 
   void writeList(BuildContext context, String title, String category) {
     print('list_view_page.dart line 86--> writeList called');
