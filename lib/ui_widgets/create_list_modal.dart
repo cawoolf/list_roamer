@@ -57,11 +57,11 @@ class _CreateListModalState extends State<CreateListModal>{
                        borderRadius: BorderRadius.circular(20),
                        boxShadow: [
                          BoxShadow(
-                             color: Colors.black,// RiveAppTheme.shadow.withOpacity(0.3),
+                             color: Colors.black.withOpacity(0.3),// RiveAppTheme.shadow.withOpacity(0.3),
                              offset: const Offset(0, 3),
                              blurRadius: 5),
                          BoxShadow(
-                             color:Colors.black,// RiveAppTheme.shadow.withOpacity(0.3),
+                             color:Colors.black.withOpacity(0.3),// RiveAppTheme.shadow.withOpacity(0.3),
                              offset: const Offset(0, 30),
                              blurRadius: 30)
                        ],
@@ -73,12 +73,12 @@ class _CreateListModalState extends State<CreateListModal>{
                      mainAxisSize: MainAxisSize.min,
                      children: [
                        const Text(
-                         "Sign In",
+                         "Create List",
                          style: TextStyle(fontFamily: "Poppins", fontSize: 34),
                        ),
                        const SizedBox(height: 24),
                        const Text(
-                           "Access to 240+ hours of content. Learn design and code, by building real apps with React and Swift.",
+                           "Enter the name and category of your List to get started",
                            textAlign: TextAlign.center,
                            style: TextStyle(
                                fontFamily: "Inter",
@@ -88,7 +88,7 @@ class _CreateListModalState extends State<CreateListModal>{
                        const Align(
                          alignment: Alignment.centerLeft,
                          child: Text(
-                           "Email",
+                           "Title",
                            style: TextStyle(
                                color: CupertinoColors.secondaryLabel,
                                fontFamily: "Inter",
@@ -104,7 +104,7 @@ class _CreateListModalState extends State<CreateListModal>{
                        const Align(
                          alignment: Alignment.centerLeft,
                          child: Text(
-                           "Password",
+                           "Category",
                            style: TextStyle(
                                color: CupertinoColors.secondaryLabel,
                                fontFamily: "Inter",
@@ -112,7 +112,7 @@ class _CreateListModalState extends State<CreateListModal>{
                          ),
                        ),
                        const SizedBox(height: 8),
-                       TextField(
+                       const TextField(
                          obscureText: true,
                          // decoration: authInputStyle("icon_lock"),
                          // controller: _passController,
@@ -137,13 +137,12 @@ class _CreateListModalState extends State<CreateListModal>{
                              bottomLeft: Radius.circular(20),
                              bottomRight: Radius.circular(20),
                            ),
-                           child: Row(
+                           child: const Row(
                              mainAxisAlignment: MainAxisAlignment.center,
-                             children: const [
-                               Icon(Icons.arrow_forward_rounded),
+                             children: [
                                SizedBox(width: 4),
                                Text(
-                                 "Sign In",
+                                 "Create",
                                  style: TextStyle(
                                      fontSize: 17,
                                      fontFamily: "Inter",
@@ -156,33 +155,8 @@ class _CreateListModalState extends State<CreateListModal>{
                            },
                          ),
                        ),
-                       Padding(
-                         padding: const EdgeInsets.symmetric(vertical: 24.0),
-                         child: Row(
-                           children: [
-                             const Expanded(child: Divider()),
-                             Padding(
-                               padding:
-                               const EdgeInsets.symmetric(horizontal: 8),
-                               child: Text(
-                                 "OR",
-                                 style: TextStyle(
-                                     color: Colors.black.withOpacity(0.3),
-                                     fontSize: 15,
-                                     fontFamily: "Inter"),
-                               ),
-                             ),
-                             const Expanded(child: Divider()),
-                           ],
-                         ),
-                       ),
-                       const Text("Sign up with Email, Apple or Google",
-                           style: TextStyle(
-                               color: CupertinoColors.secondaryLabel,
-                               fontFamily: "Inter",
-                               fontSize: 15)),
                        const SizedBox(height: 24),
-                       Row(
+                       const Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          children: [
                            // Image.asset(AssetPaths.logoEmail),
