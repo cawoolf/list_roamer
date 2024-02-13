@@ -8,7 +8,7 @@ import '../model/user_marker_factory.dart';
 
 abstract class Database {
 
-  Future<void> setUserList(UserList userList);
+  Future<void> createUserList(UserList userList);
   Future<void> setUserMarker(UserMarker userMarker, UserList userList, MarkerId markerId);
   Stream<List<UserList>> userListsStream();
   Stream<List<UserMarker>> markerStream({required String listId});
@@ -26,7 +26,7 @@ class FirestoreDatabase implements Database {
 
   // Set date regardless of if it is a new or existing document
   @override
-  Future<void> setUserList(UserList userList) =>
+  Future<void> createUserList(UserList userList) =>
       _service.setData(path: APIPath.userList(userId: uid, listId: userList.id), data: userList.toMap());
 
   @override
