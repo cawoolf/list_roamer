@@ -22,7 +22,7 @@ class WelcomePageState extends State<WelcomePage> {
     String testUserId = 'testUser';
 
     // Add a delay and then navigate to the Home Page
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 0), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) {

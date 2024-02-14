@@ -15,8 +15,8 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
 
   Widget _buildAddPlaceModal() {
     return Container(
-      width: 600,
-      height: 350,
+      width: 400,
+      height: 300,
       decoration: BoxDecoration(
         color: Colors.grey[200], // Set background color
         borderRadius: BorderRadius.circular(8.0), // Set border radius
@@ -24,21 +24,21 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildCard(Icons.access_alarm, 'Card 1'),
+                _buildCard('assets/icons/add_places_modal_icons/map-pin', 'Card 1'),
                 const SizedBox(width: 16), // Adjust spacing between cards
-                _buildCard(Icons.access_time, 'Card 2'),
+                _buildCard('assets/icons/add_places_modal_icons/map-marker', 'Card 2'),
               ],
             ),
             const SizedBox(height: 32), // Adjust vertical space between rows
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildCard(Icons.accessibility, 'Card 3'),
+                _buildCard('assets/icons/add_places_modal_icons/location-crosshairs.png', 'Card 3'),
               ],
             ),
           ],
@@ -47,16 +47,17 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
     );
   }
 
-  Widget _buildCard(IconData iconData, String text) {
+  Widget _buildCard(String iconPath, String text) {
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              iconData,
-              size: 48,
+            Image.asset(
+              iconPath,
+              width: 48,
+              height: 48,
             ),
             SizedBox(height: 8),
             Text(
