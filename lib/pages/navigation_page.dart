@@ -22,7 +22,8 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   void initState() {
     super.initState();
-    selectedListForMap = UserList(id: 'testList_1', title:'My Test List 1', category: 'testing');
+    selectedListForMap = UserList(
+        id: 'testList_1', title: 'My Test List 1', category: 'testing');
   }
 
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
@@ -35,9 +36,15 @@ class _NavigationPageState extends State<NavigationPage> {
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
       //Takes a context argument, but passing _ since we don't need it.
-      TabItem.map: (_) => MapPage(userList: selectedListForMap),
-      TabItem.list: (_) => ListViewPage(onUserListSelected: _onUserListSelected,),
-      TabItem.home: (_) => HomePage(onUserListSelected: _onUserListSelected,),
+      TabItem.map: (_) => SafeArea(
+            child: MapPage(userList: selectedListForMap),
+          ),
+      TabItem.list: (_) => ListViewPage(
+            onUserListSelected: _onUserListSelected,
+          ),
+      TabItem.home: (_) => HomePage(
+            onUserListSelected: _onUserListSelected,
+          ),
       TabItem.account: (_) => const AccountPage(),
     };
   }
@@ -50,19 +57,17 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 
   void _select(TabItem tabItem) {
-    if(tabItem == _currentTab) {
+    if (tabItem == _currentTab) {
       navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
-    }
-    else {
+    } else {
       setState(() => _currentTab = tabItem);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
-      onWillPop: () async{
+      onWillPop: () async {
         // Used for handling back navigation on Android.
         // Pops the stack one at a time until it exits the app on the last pop.
         final currentState = navigatorKeys[_currentTab]?.currentState;

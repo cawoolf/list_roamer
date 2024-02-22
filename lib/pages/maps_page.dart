@@ -37,22 +37,30 @@ class _MapPageState extends State<MapPage> {
         stream: database.markerStream(listId: listId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
             print('Maps Page - Error: ${snapshot.error}');
-            return Text('Error: ${snapshot.error}');
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
           } else {
             List<UserMarker> markers = snapshot.data ?? [];
             return _buildMapWithMarkers(markers);
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showAddPlacesDialog(context);
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            _showAddPlacesDialog(context);
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -78,4 +86,3 @@ class _MapPageState extends State<MapPage> {
     );
   }
 }
-
