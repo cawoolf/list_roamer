@@ -6,6 +6,9 @@ import '../model/user_marker.dart';
 import '../services/database.dart';
 import '../ui_widgets/add_places_modal.dart';
 
+
+// Stateful widget is breaking the onListSelectedCall back. Can't load lists like this, but
+// the performance is better. 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key, required this.userList}) : super(key: key);
   final UserList? userList;
