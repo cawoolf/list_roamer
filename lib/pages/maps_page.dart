@@ -8,7 +8,9 @@ import '../ui_widgets/add_places_modal.dart';
 
 
 // Stateful widget is breaking the onListSelectedCall back. Can't load lists like this, but
-// the performance is better. 
+// the performance is better.
+// Basically the widget isn't being rebuilt when a new list is clicked
+// Probably need to add a listner or something
 class MapPage extends StatefulWidget {
   const MapPage({Key? key, required this.userList}) : super(key: key);
   final UserList? userList;
@@ -26,12 +28,14 @@ class _MapPageState extends State<MapPage> {
     super.initState();
     listId = widget.userList?.id ?? "";
     listTitle = widget.userList?.title ?? "";
+    print('_MapPageState line 29: listId = $listId');
   }
 
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
 
+        print('_MapPageState build() line 36: listId = $listId');
     return Scaffold(
       appBar: AppBar(
         title: Text('ListRoamer - $listTitle'),

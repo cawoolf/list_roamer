@@ -34,6 +34,7 @@ class _NavigationPageState extends State<NavigationPage> {
   };
 
   Map<TabItem, WidgetBuilder> get widgetBuilders {
+    print('_NavigationPageState line 37: selectedListForMap: ${selectedListForMap?.id}');
     return {
       //Takes a context argument, but passing _ since we don't need it.
       TabItem.map: (_) => SafeArea(
