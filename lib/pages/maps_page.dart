@@ -32,6 +32,15 @@ class _MapPageState extends State<MapPage> {
   }
 
   @override
+  void didUpdateWidget(covariant MapPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    listId = widget.userList?.id ?? "";
+    listTitle = widget.userList?.title ?? "";
+    print('_MapPageState line 29: listId = $listId');
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
 
