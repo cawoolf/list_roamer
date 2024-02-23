@@ -28,7 +28,6 @@ class _MapPageState extends State<MapPage> {
     super.initState();
     listId = widget.userList?.id ?? "";
     listTitle = widget.userList?.title ?? "";
-    print('_MapPageState line 29: listId = $listId');
   }
 
   @override
@@ -36,7 +35,7 @@ class _MapPageState extends State<MapPage> {
     super.didUpdateWidget(oldWidget);
     listId = widget.userList?.id ?? "";
     listTitle = widget.userList?.title ?? "";
-    print('_MapPageState line 29: listId = $listId');
+
   }
 
 
@@ -44,7 +43,6 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
 
-        print('_MapPageState build() line 36: listId = $listId');
     return Scaffold(
       appBar: AppBar(
         title: Text('ListRoamer - $listTitle'),
