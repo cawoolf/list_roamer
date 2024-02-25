@@ -30,16 +30,16 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildCard('assets/images/icons/add_places_modal_icons/map-pin.png', 'Card 1'),
+                _addByPlacesSearch(),
                 const SizedBox(width: 16), // Adjust spacing between cards
-                _buildCard('assets/images/icons/add_places_modal_icons/map-marker.png', 'Card 2'),
+                _addByGoogleMapsShare(),
               ],
             ),
             const SizedBox(height: 32), // Adjust vertical space between rows
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildCard('assets/images/icons/add_places_modal_icons/location-crosshairs.png', 'Card 3'),
+                _addByGeoLocation(),
               ],
             ),
           ],
@@ -48,33 +48,61 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
     );
   }
 
-  Widget _buildCard(String iconPath, String text) {
+  Widget _addByPlacesSearch() {
+    void triggerAddByPlaces() =>
+        print('add_places_modal line 71-> _addByPlacesSearch called');
+
+    return _buildCard('assets/images/icons/add_places_modal_icons/map-pin.png',
+        'Search Places', triggerAddByPlaces);
+  }
+
+  Widget _addByGoogleMapsShare() {
+    void triggerGoogleMapShare() =>
+        print('add_places_modal line 64-> _addByGoogleMapsShare called');
+
+    return _buildCard(
+        'assets/images/icons/add_places_modal_icons/map-marker.png',
+        'Share from Maps',
+        triggerGoogleMapShare);
+  }
+
+
+  Widget _addByGeoLocation() {
+    void triggerGeoLocationAdd() =>
+        print('add_places_modal line 53-> _addByGeoLocation called');
+
+    return _buildCard(
+      'assets/images/icons/add_places_modal_icons/location-crosshairs.png',
+      'GeoLocation',
+      triggerGeoLocationAdd,
+    );
+  }
+  Widget _buildCard(String iconPath, String text, VoidCallback onPressed) {
     return Card(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              iconPath,
-              width: 48,
-              height: 48,
-            ),
-            SizedBox(height: 8),
-            Text(
-              text,
-              style: TextStyle(fontSize: 18),
-            ),
-          ],
+      child: InkWell(
+        onTap: onPressed, // Here, we assign the onPressed function to the onTap event.
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                iconPath,
+                width: 48,
+                height: 48,
+              ),
+              SizedBox(height: 8),
+              Text(
+                text,
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-
-
-
 
 /*
 Need to show a modal with three small square cards.

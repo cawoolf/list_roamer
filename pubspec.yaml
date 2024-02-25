@@ -50,6 +50,7 @@ dependencies:
   firedart: ^0.9.7
   http: ^0.13.3
   puppeteer: ^3.6.0
+  geolocator: ^11.0.0
 
 
 
