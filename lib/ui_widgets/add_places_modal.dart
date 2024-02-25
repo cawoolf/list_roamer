@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'dart:js' as js;
 
 class AddPlaceModal extends StatefulWidget {
   const AddPlaceModal({super.key});
@@ -49,27 +51,20 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
   }
 
   Widget _addByPlacesSearch() {
-    void triggerAddByPlaces() =>
-        print('add_places_modal line 71-> _addByPlacesSearch called');
-
     return _buildCard('assets/images/icons/add_places_modal_icons/map-pin.png',
         'Search Places', triggerAddByPlaces);
   }
 
   Widget _addByGoogleMapsShare() {
-    void triggerGoogleMapShare() =>
-        print('add_places_modal line 64-> _addByGoogleMapsShare called');
 
     return _buildCard(
         'assets/images/icons/add_places_modal_icons/map-marker.png',
         'Share from Maps',
-        triggerGoogleMapShare);
+        getCurrentLocation);
   }
 
 
   Widget _addByGeoLocation() {
-    void triggerGeoLocationAdd() =>
-        print('add_places_modal line 53-> _addByGeoLocation called');
 
     return _buildCard(
       'assets/images/icons/add_places_modal_icons/location-crosshairs.png',
@@ -102,6 +97,30 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
       ),
     );
   }
+
+
+  // Business Logic
+  void getCurrentLocation() async {
+
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      print('Current Location: ${position.latitude}, ${position.longitude}');
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  void triggerGeoLocationAdd() {
+      print('add_places_modal line 53-> _addByGeoLocation called');
+      getCurrentLocation();
+  }
+
+  void triggerGoogleMapShare() =>
+      print('add_places_modal line 64-> _addByGoogleMapsShare called');
+
+  void triggerAddByPlaces() =>
+      print('add_places_modal line 71-> _addByPlacesSearch called');
 }
 
 /*
