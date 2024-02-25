@@ -9,10 +9,11 @@ import '../ui_widgets/create_list_modal.dart';
 import 'markers_view_page.dart';
 
 class ListViewPage extends StatelessWidget {
-  const ListViewPage({Key? key, required this.onUserListSelected})
+  const ListViewPage({Key? key, required this.onUserListSelected, required this.displayAddButton})
       : super(key: key);
 
   final Function(UserList) onUserListSelected;
+  final bool displayAddButton;
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +52,20 @@ class ListViewPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 56.0,
-                right: 16.0,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    // Handle the onTap function for the plus icon (Add more lists).
-                    // Add your logic here.
-                    // writeTestList(context);
-                    triggerCreateListModal(context);
-                  },
-                  child: Icon(Icons.add),
+              if (displayAddButton) // Conditionally render FloatingActionButton
+                Positioned(
+                  bottom: 56.0,
+                  right: 16.0,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      // Handle the onTap function for the plus icon (Add more lists).
+                      // Add your logic here.
+                      // writeTestList(context);
+                      triggerCreateListModal(context);
+                    },
+                    child: Icon(Icons.add),
+                  ),
                 ),
-              ),
             ],
           );
         },

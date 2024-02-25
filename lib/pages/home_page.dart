@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
             // Bottom 2/3 of the page - List view
             Container(
               height: 2 * MediaQuery.of(context).size.height / 3,
-              child: ListViewPage(onUserListSelected: onUserListSelected), // Placeholder function
+              child: ListViewPage(onUserListSelected: onUserListSelected, displayAddButton: false,), // Placeholder function
             ),
           ],
         ),

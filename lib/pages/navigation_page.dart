@@ -41,6 +41,7 @@ class _NavigationPageState extends State<NavigationPage> {
           ),
       TabItem.list: (_) => ListViewPage(
             onUserListSelected: _onUserListSelected,
+            displayAddButton: true,
           ),
       TabItem.home: (_) => HomePage(
             onUserListSelected: _onUserListSelected,

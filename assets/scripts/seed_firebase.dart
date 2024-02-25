@@ -3,7 +3,7 @@ import 'package:firedart/firedart.dart';
 Future<void> main() async {
   Firestore.initialize("listroamer");
 
-  readTest();
+  // readTest();
   writeTest();
 
 }
