@@ -50,28 +50,6 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
     );
   }
 
-  Widget _addByPlacesSearch() {
-    return _buildCard('assets/images/icons/add_places_modal_icons/map-pin.png',
-        'Search Places', triggerAddByPlaces);
-  }
-
-  Widget _addByGoogleMapsShare() {
-
-    return _buildCard(
-        'assets/images/icons/add_places_modal_icons/map-marker.png',
-        'Share from Maps',
-        getCurrentLocation);
-  }
-
-
-  Widget _addByGeoLocation() {
-
-    return _buildCard(
-      'assets/images/icons/add_places_modal_icons/location-crosshairs.png',
-      'GeoLocation',
-      triggerGeoLocationAdd,
-    );
-  }
   Widget _buildCard(String iconPath, String text, VoidCallback onPressed) {
     return Card(
       child: InkWell(
@@ -95,6 +73,29 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
           ),
         ),
       ),
+    );
+  }
+  
+  Widget _addByPlacesSearch() {
+    return _buildCard('assets/images/icons/add_places_modal_icons/map-pin.png',
+        'Search Places', triggerAddByPlaces);
+  }
+
+  Widget _addByGoogleMapsShare() {
+
+    return _buildCard(
+        'assets/images/icons/add_places_modal_icons/map-marker.png',
+        'Share from Maps',
+        triggerGoogleMapShare);
+  }
+
+
+  Widget _addByGeoLocation() {
+
+    return _buildCard(
+      'assets/images/icons/add_places_modal_icons/location-crosshairs.png',
+      'GeoLocation',
+      triggerGeoLocationAdd,
     );
   }
 
