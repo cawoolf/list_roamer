@@ -75,7 +75,7 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
       ),
     );
   }
-  
+
   Widget _addByPlacesSearch() {
     return _buildCard('assets/images/icons/add_places_modal_icons/map-pin.png',
         'Search Places', triggerAddByPlaces);

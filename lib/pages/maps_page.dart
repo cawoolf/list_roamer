@@ -6,7 +6,7 @@ import '../model/user_marker.dart';
 import '../services/database.dart';
 import '../ui_widgets/add_places_modal.dart';
 
-
+// Really needs a BLoC it seems. Or at least a change notifier. 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key, required this.userList}) : super(key: key);
   final UserList? userList;
