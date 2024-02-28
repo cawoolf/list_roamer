@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import '../model/user_list.dart';
-import '../model/user_marker.dart';
-import '../services/database.dart';
-import '../ui_widgets/add_places_modal.dart';
+
+import '../../../services/database.dart';
+import '../../model/user_list.dart';
+import '../../model/user_marker.dart';
+import '../../ui_widgets/add_places_modal.dart';
 
 // Really needs a BLoC it seems. Or at least a change notifier.
 class MapPage extends StatefulWidget {

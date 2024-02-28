@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:list_roamer/pages/navigation_page.dart';
 import 'package:provider/provider.dart';
-
-import '../services/database.dart';
-import 'home_page.dart';
+import '../../services/database.dart';
+import 'navigation_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);

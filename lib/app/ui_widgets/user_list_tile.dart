@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:list_roamer/model/user_list.dart';
+import 'package:list_roamer/app/model/user_list.dart';
+
 
 class UserListTile extends StatelessWidget {
   const UserListTile({Key? key, required this.list, required this.onTap, required this.onTrailingTap})

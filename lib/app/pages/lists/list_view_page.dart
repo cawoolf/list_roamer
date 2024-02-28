@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:list_roamer/model/user_list_tile.dart';
 import 'package:list_roamer/services/database.dart';
-import 'package:list_roamer/services/helpers/json_helper.dart';
 import 'package:provider/provider.dart';
-import '../model/user_list.dart';
-import '../services/helpers/list_item_builder.dart';
-import '../ui_widgets/create_list_modal.dart';
-import 'markers_view_page.dart';
+import '../../model/user_list.dart';
+import '../../ui_widgets/create_list_modal.dart';
+import '../../ui_widgets/user_list_tile.dart';
+import 'list_item_builder.dart';
+import 'markers/markers_view_page.dart';
+
 
 class ListViewPage extends StatelessWidget {
   const ListViewPage({Key? key, required this.onUserListSelected, required this.displayAddButton})

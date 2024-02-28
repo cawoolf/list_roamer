@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:list_roamer/pages/maps_page.dart';
+import '../ui_widgets/cupertino_home_scaffold.dart';
+import '../ui_widgets/tab_item.dart';
 import '../model/user_list.dart';
-import '../services/helpers/tab_item.dart';
-import 'account_page.dart';
-import 'common_widgets/cupertino_home_scaffold.dart';
-import 'home_page.dart';
-import 'list_view_page.dart';
+import 'account/account_page.dart';
+import 'home/home_page.dart';
+import 'lists/list_view_page.dart';
+import 'maps/maps_page.dart';
+
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({Key? key}) : super(key: key);

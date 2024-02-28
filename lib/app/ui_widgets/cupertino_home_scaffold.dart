@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../services/helpers/tab_item.dart';
+
+import 'tab_item.dart';
 
 
 // Creates a HomeScaffold that knows about which tab we are on

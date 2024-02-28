@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:list_roamer/services/database.dart';
 import 'package:list_roamer/services/helpers/json_helper.dart';
-import 'package:list_roamer/services/helpers/json_marker_helper.dart';
-import '../model/user_list.dart';
-import '../model/user_marker.dart';
+
+import '../../../model/user_list.dart';
+import '../../../model/user_marker.dart';
+import 'json_marker_helper.dart';
+
 
 class MarkersViewPage extends StatelessWidget {
   final UserList? userList;

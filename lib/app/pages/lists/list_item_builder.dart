@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../model/empty_content.dart';
+import '../../ui_widgets/empty_content.dart';
+
 
 typedef ItemWidgetBuilder<T> = Widget Function(BuildContext context, T item);
 
